@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,22 +17,31 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Corporative Library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="hNI-HT-he7">
-                                <rect key="frame" x="48" y="382" width="279" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lib_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zxs-u1-LXh">
+                                <rect key="frame" x="32" y="207.5" width="256" height="173"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zxs-u1-LXh" secondAttribute="height" multiplier="337:228" id="Ceg-Mk-99g"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Corporative Library" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="188" translatesAutoresizingMaskIntoConstraints="NO" id="hNI-HT-he7">
+                                <rect key="frame" x="32" y="370.5" width="256" height="27"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="lib_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="zxs-u1-LXh">
-                                <rect key="frame" x="19" y="219" width="337" height="188"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="hNI-HT-he7" firstAttribute="width" secondItem="zxs-u1-LXh" secondAttribute="width" id="97r-hT-tAG"/>
+                            <constraint firstItem="zxs-u1-LXh" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Dcu-17-h06"/>
+                            <constraint firstItem="zxs-u1-LXh" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.8" id="MGF-TR-h9g"/>
+                            <constraint firstItem="hNI-HT-he7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="O2e-G5-gq5"/>
+                            <constraint firstItem="hNI-HT-he7" firstAttribute="top" secondItem="zxs-u1-LXh" secondAttribute="bottom" constant="-10" id="Qts-q9-2YW"/>
+                            <constraint firstItem="zxs-u1-LXh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="num-cY-hiw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -40,6 +51,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="lib_logo.png" width="3036" height="1636"/>
+        <image name="lib_logo" width="3036" height="1636"/>
     </resources>
 </document>

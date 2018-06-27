@@ -15,7 +15,6 @@
 		CB608C8220DBB871004B2522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB608C8020DBB871004B2522 /* LaunchScreen.storyboard */; };
 		CB608C8D20DBB871004B2522 /* Corporative_LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C8C20DBB871004B2522 /* Corporative_LibraryTests.swift */; };
 		CB608C9820DBB871004B2522 /* Corporative_LibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */; };
-		CB608CA820DBBDFF004B2522 /* lib_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = CB608CA720DBBDFE004B2522 /* lib_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		CB608C9320DBB871004B2522 /* Corporative LibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corporative LibraryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corporative_LibraryUITests.swift; sourceTree = "<group>"; };
 		CB608C9920DBB871004B2522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CB608CA720DBBDFE004B2522 /* lib_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lib_logo.png; path = images/splashscreen/lib_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +99,6 @@
 		CB608C7320DBB870004B2522 /* Corporative Library */ = {
 			isa = PBXGroup;
 			children = (
-				CB608CA720DBBDFE004B2522 /* lib_logo.png */,
 				CB608C7420DBB870004B2522 /* AppDelegate.swift */,
 				CB608C7620DBB870004B2522 /* ViewController.swift */,
 				CB608C7820DBB870004B2522 /* Main.storyboard */,
@@ -237,7 +234,6 @@
 			files = (
 				CB608C8220DBB871004B2522 /* LaunchScreen.storyboard in Resources */,
 				CB608C7F20DBB871004B2522 /* Assets.xcassets in Resources */,
-				CB608CA820DBBDFF004B2522 /* lib_logo.png in Resources */,
 				CB608C7A20DBB870004B2522 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

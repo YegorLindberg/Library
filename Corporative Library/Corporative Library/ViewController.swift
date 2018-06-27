@@ -9,24 +9,32 @@
 import UIKit
 
 struct Author: Decodable {
-    var name: String
     var surname: String
+    var name   : String
 }
 
 struct someBook: Decodable {
-    var name: String
-    var authors: [Author]
-    var available: String
-    var year: String
+    var name       : String
+    var authors    : [Author]
+    var available  : String
+    var year       : String
     var description: String
-    var link: String
+    var link       : String
 }
 
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var firstBookNameLabel: UILabel!
+    
+    func setLabelWithBookName(_ book: String) {
+        firstBookNameLabel.text = book
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setLabelWithBookName("Some name")
         
         let urlString = "http://private-0fc390-corporative0library.apiary-mock.com/simplebook.json"
         guard let url = URL(string: urlString) else { return }
