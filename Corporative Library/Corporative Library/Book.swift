@@ -16,8 +16,11 @@ class Book: Codable {
     var available  : Bool
     var description: String
     var year       : Int
+    //+image
+    var image      : String = "none"
     
-    init(_id: String, name: String, link: String, authors: String, available: Bool, description: String, year: Int) {
+    //with image
+    init(_id: String, name: String, link: String, authors: String, available: Bool, description: String, year: Int, image: String) {
         self._id = _id
         self.name = name
         self.link = link
@@ -25,5 +28,6 @@ class Book: Codable {
         self.available = available
         self.description = description
         self.year = year
+        self.image = image
     }
 }

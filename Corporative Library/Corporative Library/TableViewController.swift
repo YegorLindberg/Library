@@ -81,6 +81,27 @@ class TableViewController: UITableViewController {
             cell.availableValue.text = "Not available."
         }
         
+        if partOfBooks[indexPath.row].image != "none" {
+            if let imageURL = URL(string: partOfBooks[indexPath.row].image) {
+                DispatchQueue.global().async {
+                    let data = try? Data(contentsOf: imageURL)
+                    if let data = data {
+                        let image = UIImage(data: data)
+                        DispatchQueue.main.async {
+                            cell.characterImage.image = image
+                        }
+                    }
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                cell.characterImage.image = #imageLiteral(resourceName: "emptyImage")
+            }
+        }
+        
+        
+        
+        
         return cell
     }
     
