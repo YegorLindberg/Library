@@ -9,9 +9,19 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-
-    @IBOutlet weak var bookName: UILabel!
-    @IBOutlet weak var authorName: UILabel!    
+//
+//    @IBOutlet weak var characterImage: UIImageView!
+//
+//    @IBOutlet weak var BookName: UILabel!
+//    @IBOutlet weak var AuthorName: UILabel!
+//    @IBOutlet weak var availableValue: UILabel!
+    
+    @IBOutlet weak var BookName: UILabel!
+    @IBOutlet weak var AuthorName: UILabel!
+    @IBOutlet weak var availableValue: UILabel!
+    
+    @IBOutlet weak var characterImage: UIImageView!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

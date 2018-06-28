@@ -39,7 +39,9 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         downloadJson()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -71,13 +73,20 @@ class TableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TableViewCell else { return UITableViewCell() }
         
         // Configure the cell...
-        cell.bookName.text = "Name of Book: " + partOfBooks[indexPath.row].name
-        cell.authorName.text = "Authors: " + partOfBooks[indexPath.row].authors
+        cell.BookName.text = partOfBooks[indexPath.row].name
+        cell.AuthorName.text = partOfBooks[indexPath.row].authors
+        if partOfBooks[indexPath.row].available == true {
+            cell.availableValue.text = "Available."
+        } else {
+            cell.availableValue.text = "Not available."
+        }
         
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 196.0
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
