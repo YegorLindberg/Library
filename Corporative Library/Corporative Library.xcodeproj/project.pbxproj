@@ -11,7 +11,7 @@
 		CB1D406520E4CD8400CD95EC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1D406320E4CD8400CD95EC /* TableViewCell.xib */; };
 		CB1D406720E4CF7D00CD95EC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406620E4CF7D00CD95EC /* Book.swift */; };
 		CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7420DBB870004B2522 /* AppDelegate.swift */; };
-		CB608C7720DBB870004B2522 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7620DBB870004B2522 /* ViewController.swift */; };
+		CB608C7720DBB870004B2522 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7620DBB870004B2522 /* BookViewController.swift */; };
 		CB608C7A20DBB870004B2522 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB608C7820DBB870004B2522 /* Main.storyboard */; };
 		CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7B20DBB870004B2522 /* Corporative_Library.xcdatamodeld */; };
 		CB608C7F20DBB871004B2522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB608C7E20DBB871004B2522 /* Assets.xcassets */; };
@@ -44,7 +44,7 @@
 		CB1D406620E4CF7D00CD95EC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		CB608C7120DBB870004B2522 /* Corporative Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corporative Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB608C7420DBB870004B2522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB608C7620DBB870004B2522 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CB608C7620DBB870004B2522 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
 		CB608C7920DBB870004B2522 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB608C7C20DBB870004B2522 /* Corporative_Library.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Corporative_Library.xcdatamodel; sourceTree = "<group>"; };
 		CB608C7E20DBB871004B2522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				CB608C7420DBB870004B2522 /* AppDelegate.swift */,
-				CB608C7620DBB870004B2522 /* ViewController.swift */,
+				CB608C7620DBB870004B2522 /* BookViewController.swift */,
 				CBB6745E20E423D5008DF5EF /* TableViewController.swift */,
 				CB1D406220E4CD8400CD95EC /* TableViewCell.swift */,
 				CB1D406620E4CF7D00CD95EC /* Book.swift */,
@@ -273,7 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB1D406420E4CD8400CD95EC /* TableViewCell.swift in Sources */,
-				CB608C7720DBB870004B2522 /* ViewController.swift in Sources */,
+				CB608C7720DBB870004B2522 /* BookViewController.swift in Sources */,
 				CB1D406720E4CF7D00CD95EC /* Book.swift in Sources */,
 				CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */,
 				CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */,

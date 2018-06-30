@@ -10,10 +10,10 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var partOfBooks = [Book]()
+    private var partOfBooks = [Book]()
     
     func downloadJson() {
-        let urlString = "https://private-0fc390-corporative0library.apiary-mock.com/simplebook.json"
+        let urlString = "https://shrouded-garden-88616.herokuapp.com/books/showPage/1"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -81,26 +81,23 @@ class TableViewController: UITableViewController {
             cell.availableValue.text = "Not available."
         }
         
-        if partOfBooks[indexPath.row].image != "none" {
-            if let imageURL = URL(string: partOfBooks[indexPath.row].image) {
-                DispatchQueue.global().async {
-                    let data = try? Data(contentsOf: imageURL)
-                    if let data = data {
-                        let image = UIImage(data: data)
-                        DispatchQueue.main.async {
-                            cell.characterImage.image = image
-                        }
-                    }
-                }
-            }
-        } else {
-            DispatchQueue.main.async {
+//        if partOfBooks[indexPath.row].image != "none" {
+//            if let imageURL = URL(string: partOfBooks[indexPath.row].image) {
+//                DispatchQueue.global().async {
+//                    let data = try? Data(contentsOf: imageURL)
+//                    if let data = data {
+//                        let image = UIImage(data: data)
+//                        DispatchQueue.main.async {
+//                            cell.characterImage.image = image
+//                        }
+//                    }
+//                }
+//            }
+//        } else {
+//            DispatchQueue.main.async {
                 cell.characterImage.image = #imageLiteral(resourceName: "emptyImage")
-            }
-        }
-        
-        
-        
+//            }
+//        }
         
         return cell
     }
@@ -108,6 +105,19 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 196.0
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "selectBook", sender: partOfBooks[indexPath.item])
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "selectBook" {
+            if let selectedBook = sender as? Book, let destinationViewController = segue.destination as? BookViewController {
+                destinationViewController.postBook = selectedBook
+            }
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

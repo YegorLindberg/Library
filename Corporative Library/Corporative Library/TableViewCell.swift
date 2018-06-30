@@ -9,12 +9,6 @@
 import UIKit
 
 class TableViewCell: UITableViewCell {
-//
-//    @IBOutlet weak var characterImage: UIImageView!
-//
-//    @IBOutlet weak var BookName: UILabel!
-//    @IBOutlet weak var AuthorName: UILabel!
-//    @IBOutlet weak var availableValue: UILabel!
     
     @IBOutlet weak var BookName: UILabel!
     @IBOutlet weak var AuthorName: UILabel!
