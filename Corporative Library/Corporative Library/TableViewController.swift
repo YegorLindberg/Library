@@ -10,10 +10,18 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.darkGray
+        refreshControl.addTarget(self, action: #selector(downloadFirstPage), for: .valueChanged)
+        
+        return refreshControl
+    }()
+    
     private var partOfBooks = [Book]()
     
-    func downloadJson() {
-        let urlString = "https://shrouded-garden-88616.herokuapp.com/books/showPage/1"
+    @objc func downloadFirstPage() {
+        let urlString = "https://libraryomega.herokuapp.com/books/showPage/1"
         guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -35,12 +43,17 @@ class TableViewController: UITableViewController {
                 print(error)
             }
         }.resume()
+        refresher.endRefreshing()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        downloadJson()
+        tableView.refreshControl = refresher
+        
+        downloadFirstPage()
+        
+        // --- Get-requests to load new data(pages)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -48,7 +61,7 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
     
     
     override func didReceiveMemoryWarning() {

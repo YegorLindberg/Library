@@ -31,3 +31,28 @@ class Book: Codable {
         //self.image = image
     }
 }
+
+//
+//class cancelBook: Codable {
+//    var _id: String = "asd"
+//    init(id: String) {
+//        self._id = id
+//    }
+//}
+//
+//class takeBook: Codable {
+//    var _id: String = "asd"
+//    var name: String = "qwe"
+//    init(id: String, name: String) {
+//        self._id = id
+//        self.name = name
+//    }
+//}
+
+
+
+
+
+
+
+

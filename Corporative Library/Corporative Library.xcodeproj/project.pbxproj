@@ -18,6 +18,7 @@
 		CB608C8220DBB871004B2522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB608C8020DBB871004B2522 /* LaunchScreen.storyboard */; };
 		CB608C8D20DBB871004B2522 /* Corporative_LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C8C20DBB871004B2522 /* Corporative_LibraryTests.swift */; };
 		CB608C9820DBB871004B2522 /* Corporative_LibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */; };
+		CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB91E87320EA9AA50021D965 /* NetWork.swift */; };
 		CBB6745F20E423D5008DF5EF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB6745E20E423D5008DF5EF /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		CB608C9320DBB871004B2522 /* Corporative LibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corporative LibraryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corporative_LibraryUITests.swift; sourceTree = "<group>"; };
 		CB608C9920DBB871004B2522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB91E87320EA9AA50021D965 /* NetWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		CBB6745E20E423D5008DF5EF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				CB608C7420DBB870004B2522 /* AppDelegate.swift */,
+				CB91E87320EA9AA50021D965 /* NetWork.swift */,
 				CB608C7620DBB870004B2522 /* BookViewController.swift */,
 				CBB6745E20E423D5008DF5EF /* TableViewController.swift */,
 				CB1D406220E4CD8400CD95EC /* TableViewCell.swift */,
@@ -278,6 +281,7 @@
 				CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */,
 				CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */,
 				CBB6745F20E423D5008DF5EF /* TableViewController.swift in Sources */,
+				CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
