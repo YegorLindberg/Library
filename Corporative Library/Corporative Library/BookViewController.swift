@@ -41,6 +41,7 @@ class BookViewController: UIViewController {
         }
         yearBook.text = String(postBook.year)
         descriptionBook.text = postBook.description
+        descriptionBook.sizeToFit()
         
         // Do any additional setup after loading the view, typically from a nib.
     }

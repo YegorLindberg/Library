@@ -10,6 +10,7 @@
 		CB1D406420E4CD8400CD95EC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406220E4CD8400CD95EC /* TableViewCell.swift */; };
 		CB1D406520E4CD8400CD95EC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1D406320E4CD8400CD95EC /* TableViewCell.xib */; };
 		CB1D406720E4CF7D00CD95EC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406620E4CF7D00CD95EC /* Book.swift */; };
+		CB5668C520EF93530018DB2F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5668C420EF93530018DB2F /* ScrollView.swift */; };
 		CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7420DBB870004B2522 /* AppDelegate.swift */; };
 		CB608C7720DBB870004B2522 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7620DBB870004B2522 /* BookViewController.swift */; };
 		CB608C7A20DBB870004B2522 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB608C7820DBB870004B2522 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		CB1D406220E4CD8400CD95EC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		CB1D406320E4CD8400CD95EC /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		CB1D406620E4CF7D00CD95EC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		CB5668C420EF93530018DB2F /* ScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		CB608C7120DBB870004B2522 /* Corporative Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corporative Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB608C7420DBB870004B2522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB608C7620DBB870004B2522 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				CB608C7420DBB870004B2522 /* AppDelegate.swift */,
+				CB5668C420EF93530018DB2F /* ScrollView.swift */,
 				CB91E87320EA9AA50021D965 /* NetWork.swift */,
 				CB608C7620DBB870004B2522 /* BookViewController.swift */,
 				CBB6745E20E423D5008DF5EF /* TableViewController.swift */,
@@ -280,6 +283,7 @@
 				CB1D406720E4CF7D00CD95EC /* Book.swift in Sources */,
 				CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */,
 				CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */,
+				CB5668C520EF93530018DB2F /* ScrollView.swift in Sources */,
 				CBB6745F20E423D5008DF5EF /* TableViewController.swift in Sources */,
 				CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */,
 			);
