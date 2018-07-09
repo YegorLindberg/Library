@@ -31,8 +31,6 @@ func downloadNextPage(page: Int) -> [Book] {
     return partOfBooks
 }
 
-
-
 func postCancel(id_book: String) {
 
     print(id_book)
@@ -100,6 +98,36 @@ func postTake(id_book: String, Name: String) {
     }.resume()
 }
 
+
+func AddingBook(Name: String, Link: String, Authors: String, Description: String, Year: String) {
+
+    let infoAboutBook = ["name":Name, "link":Link, "authors":Authors, "description":Description, "year":Year]// as [String : Any]
+    
+    let urlString = "https://libraryomega.herokuapp.com/books"
+    guard let url = URL(string: urlString) else { return }
+    var request = URLRequest(url: url)
+    
+    request.httpMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+    guard let httpBody = try? JSONSerialization.data(withJSONObject: infoAboutBook, options: []) else { return }
+    
+    request.httpBody = httpBody
+    
+    URLSession.shared.dataTask(with: request) { (data, response, error) in
+        if let response = response {
+            print(response)
+        }
+        
+        guard let data = data else { return }
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
+        } catch {
+            print("Error: ", error)
+        }
+    }.resume()
+}
 
 
 

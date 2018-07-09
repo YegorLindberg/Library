@@ -20,14 +20,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssH-qh-bZi">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="scrollView" translatesAutoresizingMaskIntoConstraints="NO" id="ssH-qh-bZi" userLabel="scrollView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOm-Fg-HmF">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOm-Fg-HmF" userLabel="addView">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For adding book, fill the fields:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZ0-6a-gHH">
                                                 <rect key="frame" x="30.5" y="26" width="259" height="24"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="YZ0-6a-gHH" secondAttribute="height" multiplier="259:24" id="jNO-1p-xVu"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -37,6 +40,9 @@
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" keyboardKey="YES"/>
                                                 </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Tql-FV-CHy" secondAttribute="height" multiplier="301:30" id="S52-hR-R9u"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -46,6 +52,9 @@
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" keyboardKey="YES"/>
                                                 </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="gWn-0H-1kV" secondAttribute="height" multiplier="301:30" id="Pdc-YY-sNv"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -55,6 +64,9 @@
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" keyboardKey="YES"/>
                                                 </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="4Pe-zf-n7C" secondAttribute="height" multiplier="301:30" id="kH3-TF-7Wp"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -64,16 +76,37 @@
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" keyboardKey="YES"/>
                                                 </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="6yI-6o-noD" secondAttribute="height" multiplier="301:30" id="RQc-Hl-ln6"/>
+                                                </constraints>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="continue"/>
                                             </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Authors" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0z-Nz-Xbl">
+                                                <rect key="frame" x="11" y="169" width="301" height="30"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" keyboardKey="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="S0z-Nz-Xbl" secondAttribute="height" multiplier="301:30" id="pdp-0t-bNU"/>
+                                                </constraints>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="0.1960784314" green="0.80240491869999997" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="S0z-Nz-Xbl" firstAttribute="centerX" secondItem="4Pe-zf-n7C" secondAttribute="centerX" constant="1" id="2Nz-d0-BBO"/>
+                                            <constraint firstItem="S0z-Nz-Xbl" firstAttribute="width" secondItem="4Pe-zf-n7C" secondAttribute="width" id="302-Y9-AAR"/>
+                                            <constraint firstItem="gWn-0H-1kV" firstAttribute="top" secondItem="S0z-Nz-Xbl" secondAttribute="bottom" constant="23" id="DPo-JV-7Zx"/>
                                             <constraint firstItem="4Pe-zf-n7C" firstAttribute="width" secondItem="Tql-FV-CHy" secondAttribute="width" id="FCG-9p-zrC"/>
+                                            <constraint firstItem="S0z-Nz-Xbl" firstAttribute="top" secondItem="4Pe-zf-n7C" secondAttribute="bottom" constant="23" id="GmG-94-ARx"/>
                                             <constraint firstItem="6yI-6o-noD" firstAttribute="centerX" secondItem="sOm-Fg-HmF" secondAttribute="centerX" id="HZn-ws-55h"/>
                                             <constraint firstItem="YZ0-6a-gHH" firstAttribute="centerX" secondItem="sOm-Fg-HmF" secondAttribute="centerX" id="M46-6y-Jed"/>
+                                            <constraint firstItem="gWn-0H-1kV" firstAttribute="width" secondItem="S0z-Nz-Xbl" secondAttribute="width" id="OsX-jI-1cI"/>
+                                            <constraint firstItem="6yI-6o-noD" firstAttribute="centerX" secondItem="gWn-0H-1kV" secondAttribute="centerX" id="QKh-Hi-qaG"/>
                                             <constraint firstItem="4Pe-zf-n7C" firstAttribute="centerX" secondItem="sOm-Fg-HmF" secondAttribute="centerX" id="U9r-fJ-Odq"/>
                                             <constraint firstItem="Tql-FV-CHy" firstAttribute="top" secondItem="YZ0-6a-gHH" secondAttribute="bottom" constant="16" id="auY-WM-EnG"/>
                                             <constraint firstItem="Tql-FV-CHy" firstAttribute="width" secondItem="sOm-Fg-HmF" secondAttribute="width" multiplier="0.94" id="jfh-Va-EWb"/>
@@ -92,32 +125,19 @@
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="AddingTapped:" destination="ZLe-xQ-C3a" eventType="touchUpInside" id="crd-EF-NXn"/>
                                             <action selector="addingBook:" destination="YKN-Lj-tB7" eventType="touchUpInside" id="FAM-zw-jFM"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Authors" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S0z-Nz-Xbl">
-                                        <rect key="frame" x="10" y="169" width="301" height="30"/>
-                                        <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" keyboardKey="YES"/>
-                                        </accessibility>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="next"/>
-                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="gWn-0H-1kV" firstAttribute="width" secondItem="S0z-Nz-Xbl" secondAttribute="width" id="0al-fE-PkI"/>
                                     <constraint firstAttribute="bottom" secondItem="sOm-Fg-HmF" secondAttribute="bottom" id="5I8-am-pQX"/>
                                     <constraint firstAttribute="trailing" secondItem="sOm-Fg-HmF" secondAttribute="trailing" id="D05-1Z-jKE"/>
                                     <constraint firstItem="sOm-Fg-HmF" firstAttribute="leading" secondItem="ssH-qh-bZi" secondAttribute="leading" id="EPT-zs-lf7"/>
                                     <constraint firstItem="sOm-Fg-HmF" firstAttribute="top" secondItem="ssH-qh-bZi" secondAttribute="top" id="FpC-2M-Xd4"/>
                                     <constraint firstItem="sOm-Fg-HmF" firstAttribute="centerX" secondItem="ssH-qh-bZi" secondAttribute="centerX" id="IN1-vu-GE2"/>
-                                    <constraint firstItem="gWn-0H-1kV" firstAttribute="top" secondItem="S0z-Nz-Xbl" secondAttribute="bottom" constant="23" id="Il8-KL-FC7"/>
-                                    <constraint firstItem="S0z-Nz-Xbl" firstAttribute="centerX" secondItem="sOm-Fg-HmF" secondAttribute="centerX" id="NZs-LC-5KH"/>
                                     <constraint firstItem="sOm-Fg-HmF" firstAttribute="centerY" secondItem="ssH-qh-bZi" secondAttribute="centerY" id="eUt-4b-Sch"/>
                                     <constraint firstItem="QKH-AL-uea" firstAttribute="top" secondItem="sOm-Fg-HmF" secondAttribute="bottom" constant="-46" id="fdI-6j-Isw"/>
-                                    <constraint firstItem="S0z-Nz-Xbl" firstAttribute="width" secondItem="4Pe-zf-n7C" secondAttribute="width" id="ksB-PI-sFx"/>
-                                    <constraint firstItem="S0z-Nz-Xbl" firstAttribute="top" secondItem="4Pe-zf-n7C" secondAttribute="bottom" constant="23" id="lkX-I4-uPT"/>
                                     <constraint firstItem="QKH-AL-uea" firstAttribute="width" secondItem="sOm-Fg-HmF" secondAttribute="width" multiplier="0.8" id="p7Y-a8-FS8"/>
                                     <constraint firstItem="QKH-AL-uea" firstAttribute="centerX" secondItem="sOm-Fg-HmF" secondAttribute="centerX" id="uy6-I9-cQm"/>
                                 </constraints>
@@ -133,7 +153,12 @@
                         <viewLayoutGuide key="safeArea" id="83w-KC-oyh"/>
                     </view>
                     <connections>
+                        <outlet property="authorsAdd" destination="S0z-Nz-Xbl" id="nCr-wL-vFO"/>
+                        <outlet property="descriptionAdd" destination="6yI-6o-noD" id="K1K-dt-qlI"/>
+                        <outlet property="linkAdd" destination="4Pe-zf-n7C" id="9uv-zp-5eP"/>
+                        <outlet property="scrollView" destination="ssH-qh-bZi" id="5aD-a3-iP4"/>
                         <outlet property="titleAdd" destination="Tql-FV-CHy" id="022-Ln-k3a"/>
+                        <outlet property="yearAdd" destination="gWn-0H-1kV" id="e3R-pT-9AL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0k-cs-MOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -282,19 +307,19 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="i0m-Ag-Voi">
-                                        <rect key="frame" x="15" y="245.5" width="297" height="220"/>
+                                        <rect key="frame" x="15" y="245.5" width="297" height="238"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLk-uw-WU0">
-                                                <rect key="frame" x="0.0" y="0.0" width="215.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="215.5" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book title: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ExV-Il-ddZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="86" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title of the book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBF-pC-Zk8">
-                                                        <rect key="frame" x="88" y="0.0" width="127.5" height="30"/>
+                                                        <rect key="frame" x="88" y="0.0" width="127.5" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -302,16 +327,17 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NhU-JF-lY9">
-                                                <rect key="frame" x="0.0" y="38" width="122.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="41" width="131.5" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Link: " lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3j-2U-ofC">
-                                                        <rect key="frame" x="0.0" y="0.0" width="40.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="40.5" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kk2-kq-37j">
-                                                        <rect key="frame" x="42.5" y="0.0" width="80" height="30"/>
+                                                        <rect key="frame" x="42.5" y="0.0" width="89" height="33"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="link to book"/>
                                                         <connections>
                                                             <action selector="linkToBookButtonWasTapped:" destination="D2F-DB-lKy" eventType="touchUpInside" id="JOA-wu-F5w"/>
@@ -320,16 +346,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gKz-Nb-gY1">
-                                                <rect key="frame" x="0.0" y="76" width="172" height="30"/>
+                                                <rect key="frame" x="0.0" y="82" width="172" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Authors: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hN0-YM-Sta">
-                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="69" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="authors book" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAt-z5-3QL">
-                                                        <rect key="frame" x="71" y="0.0" width="101" height="30"/>
+                                                        <rect key="frame" x="71" y="0.0" width="101" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -337,16 +363,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="IDB-oW-sHd">
-                                                <rect key="frame" x="0.0" y="114" width="196.5" height="30"/>
+                                                <rect key="frame" x="0.0" y="123" width="196.5" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgv-Me-85X">
-                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="available status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="58v-0O-yPZ">
-                                                        <rect key="frame" x="78.5" y="0.0" width="118" height="30"/>
+                                                        <rect key="frame" x="78.5" y="0.0" width="118" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -354,16 +380,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="GAT-yf-0vV">
-                                                <rect key="frame" x="0.0" y="152" width="141" height="30"/>
+                                                <rect key="frame" x="0.0" y="164" width="141" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-xc-SJX">
-                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="year created" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gk0-GN-glP">
-                                                        <rect key="frame" x="45" y="0.0" width="96" height="30"/>
+                                                        <rect key="frame" x="45" y="0.0" width="96" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -371,10 +397,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4Ud-f3-XEj">
-                                                <rect key="frame" x="0.0" y="190" width="97" height="30"/>
+                                                <rect key="frame" x="0.0" y="205" width="97" height="33"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ewp-Sj-PNQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="97" height="33"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -384,23 +410,32 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRb-ve-QAp">
-                                        <rect key="frame" x="12" y="475.5" width="296" height="81.5"/>
+                                        <rect key="frame" x="12" y="493.5" width="296" height="81.5"/>
                                         <string key="text">book description book description book description book description book description book description book description book description </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Apc-AR-Wk8">
+                                        <rect key="frame" x="0.0" y="598" width="320" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" id="0vw-SP-r7j"/>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="2Oz-6N-Jls"/>
-                                    <constraint firstAttribute="bottom" secondItem="hRb-ve-QAp" secondAttribute="bottom" constant="10" id="6c9-u1-1uS"/>
                                     <constraint firstAttribute="trailing" secondItem="pQe-Iq-UgT" secondAttribute="trailing" constant="80" id="BgM-XA-sb0"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="12" id="Cnh-xE-KGm"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="top" secondItem="pQe-Iq-UgT" secondAttribute="bottom" constant="10" id="DIg-EE-7l9"/>
+                                    <constraint firstItem="Apc-AR-Wk8" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="GIB-Gd-Yfb"/>
+                                    <constraint firstItem="Apc-AR-Wk8" firstAttribute="top" secondItem="hRb-ve-QAp" secondAttribute="bottom" constant="23" id="Il8-uX-AnU"/>
+                                    <constraint firstAttribute="bottom" secondItem="Apc-AR-Wk8" secondAttribute="bottom" constant="10" id="Rd0-Yp-NAl"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="15" id="S79-1L-MQs"/>
                                     <constraint firstItem="pQe-Iq-UgT" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="80" id="U1Y-af-n1R"/>
                                     <constraint firstAttribute="trailing" secondItem="vx8-eM-KeF" secondAttribute="trailing" id="gUz-zc-ohE"/>
+                                    <constraint firstItem="Apc-AR-Wk8" firstAttribute="centerX" secondItem="Qri-N1-sGR" secondAttribute="centerX" id="m7X-eB-AvF"/>
                                     <constraint firstAttribute="trailing" secondItem="i0m-Ag-Voi" secondAttribute="trailing" constant="8" id="sOi-Zc-1uC"/>
                                     <constraint firstItem="pQe-Iq-UgT" firstAttribute="top" secondItem="vx8-eM-KeF" secondAttribute="bottom" constant="22" id="w1i-PU-G4c"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="top" secondItem="i0m-Ag-Voi" secondAttribute="bottom" constant="10" id="wcG-dd-uKS"/>
@@ -443,6 +478,7 @@
                         <outlet property="changingButton" destination="2HD-Un-WJ0" id="VNQ-Fe-nqL"/>
                         <outlet property="currentImage" destination="pQe-Iq-UgT" id="RcU-6T-6xf"/>
                         <outlet property="descriptionBook" destination="hRb-ve-QAp" id="6sY-uw-Kpq"/>
+                        <outlet property="enteringName" destination="Apc-AR-Wk8" id="l0q-qj-pMf"/>
                         <outlet property="linkToBookButton" destination="Kk2-kq-37j" id="dEw-l5-2ik"/>
                         <outlet property="titleChosenBook" destination="CBF-pC-Zk8" id="rQr-Cs-ivJ"/>
                         <outlet property="yearBook" destination="gk0-GN-glP" id="Me4-fO-xlh"/>
@@ -450,7 +486,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mkZ-ji-9zi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3341" y="391"/>
+            <point key="canvasLocation" x="3339.375" y="390.84507042253523"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="RT3-fv-nzx">

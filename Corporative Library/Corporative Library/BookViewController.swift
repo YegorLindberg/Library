@@ -17,6 +17,8 @@ class BookViewController: UIViewController {
     @IBOutlet weak var yearBook: UILabel!
     @IBOutlet weak var descriptionBook: UILabel!
     
+    @IBOutlet weak var enteringName: UITextField!
+    
     @IBOutlet weak var linkToBookButton: UIButton!
     @IBOutlet weak var changingButton: UIButton!
     
@@ -49,6 +51,7 @@ class BookViewController: UIViewController {
     @IBAction func manageBook() {
         if postBook.available == true {
             print("id posted book: ", postBook._id)
+            //TODO: сделать проверку на заполненность поля имени и далее снова нажать на button(кнопку), чтобы забронировать книгу.
             postTake(id_book: postBook._id, Name: "Yegor")
             print("true\n")
         } else {
@@ -60,9 +63,9 @@ class BookViewController: UIViewController {
     
     @IBAction func linkToBookButtonWasTapped(_ sender: UIButton) {
         guard let urlToBook = URL(string: postBook.link) else {
+            print("link is missing.\n")
             return
         }
-        
         UIApplication.shared.open(urlToBook, options: [:], completionHandler: nil)
         
     }
