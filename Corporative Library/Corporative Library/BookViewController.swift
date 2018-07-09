@@ -12,12 +12,12 @@ class BookViewController: UIViewController {
     
     @IBOutlet weak var currentImage: UIImageView!
     @IBOutlet weak var titleChosenBook: UILabel!
-    @IBOutlet weak var linkToBook: UILabel!
     @IBOutlet weak var bookAuthors: UILabel!
     @IBOutlet weak var availableStatus: UILabel!
     @IBOutlet weak var yearBook: UILabel!
     @IBOutlet weak var descriptionBook: UILabel!
     
+    @IBOutlet weak var linkToBookButton: UIButton!
     @IBOutlet weak var changingButton: UIButton!
     
     var postBook: Book!
@@ -28,7 +28,7 @@ class BookViewController: UIViewController {
         
         currentImage.image = #imageLiteral(resourceName: "emptyImage")
         titleChosenBook.text = postBook.name
-        linkToBook.text = postBook.link
+        linkToBookButton.setTitle(postBook.link, for: .normal) 
         bookAuthors.text = postBook.authors
         if postBook.available == true {
             changingButton.setTitle("Take this book!", for: UIControlState.normal)
@@ -58,6 +58,14 @@ class BookViewController: UIViewController {
         }
     }
     
+    @IBAction func linkToBookButtonWasTapped(_ sender: UIButton) {
+        guard let urlToBook = URL(string: postBook.link) else {
+            return
+        }
+        
+        UIApplication.shared.open(urlToBook, options: [:], completionHandler: nil)
+        
+    }
     
 //    override func didReceiveMemoryWarning() {
 //        super.didReceiveMemoryWarning()
