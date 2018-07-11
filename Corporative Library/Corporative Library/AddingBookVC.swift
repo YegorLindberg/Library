@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension AddingBookController: UITextFieldDelegate {
+extension AddingBookVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -26,7 +26,7 @@ extension UIViewController {
     }
 }
 
-class AddingBookController: UIViewController {
+class AddingBookVC: UIViewController {
    
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -78,9 +78,6 @@ class AddingBookController: UIViewController {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
-    func createPostBody() {
-        
-    }
     
     @IBAction func AddingTapped(_ sender: UIButton) {
         let newTitle = titleAdd.text!

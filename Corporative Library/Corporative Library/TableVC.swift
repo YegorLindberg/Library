@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableVC: UITableViewController {
     
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -83,34 +83,10 @@ class TableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? TableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookCell.identifier) as? BookCell else { return UITableViewCell() }
         
         // Configure the cell...
-        cell.BookName.text = partOfBooks[indexPath.row].name
-        cell.AuthorName.text = partOfBooks[indexPath.row].authors
-        if partOfBooks[indexPath.row].available == true {
-            cell.availableValue.text = "Available."
-        } else {
-            cell.availableValue.text = "Not available."
-        }
-        
-//        if partOfBooks[indexPath.row].image != "none" {
-//            if let imageURL = URL(string: partOfBooks[indexPath.row].image) {
-//                DispatchQueue.global().async {
-//                    let data = try? Data(contentsOf: imageURL)
-//                    if let data = data {
-//                        let image = UIImage(data: data)
-//                        DispatchQueue.main.async {
-//                            cell.characterImage.image = image
-//                        }
-//                    }
-//                }
-//            }
-//        } else {
-//            DispatchQueue.main.async {
-                cell.characterImage.image = #imageLiteral(resourceName: "emptyImage")
-//            }
-//        }
+        cell.populate(with: partOfBooks[indexPath.row])
         
         return cell
     }
@@ -125,7 +101,7 @@ class TableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectBook" {
-            if let selectedBook = sender as? Book, let destinationViewController = segue.destination as? BookViewController {
+            if let selectedBook = sender as? Book, let destinationViewController = segue.destination as? BookVC {
                 destinationViewController.postBook = selectedBook
             }
         }

@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB1D406420E4CD8400CD95EC /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406220E4CD8400CD95EC /* TableViewCell.swift */; };
-		CB1D406520E4CD8400CD95EC /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1D406320E4CD8400CD95EC /* TableViewCell.xib */; };
-		CB1D406720E4CF7D00CD95EC /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406620E4CF7D00CD95EC /* Book.swift */; };
+		CB1D406420E4CD8400CD95EC /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406220E4CD8400CD95EC /* BookCell.swift */; };
+		CB1D406520E4CD8400CD95EC /* BookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1D406320E4CD8400CD95EC /* BookCell.xib */; };
+		CB1D406720E4CF7D00CD95EC /* CBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D406620E4CF7D00CD95EC /* CBook.swift */; };
 		CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7420DBB870004B2522 /* AppDelegate.swift */; };
-		CB608C7720DBB870004B2522 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7620DBB870004B2522 /* BookViewController.swift */; };
+		CB608C7720DBB870004B2522 /* BookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7620DBB870004B2522 /* BookVC.swift */; };
 		CB608C7A20DBB870004B2522 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB608C7820DBB870004B2522 /* Main.storyboard */; };
 		CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB608C7B20DBB870004B2522 /* Corporative_Library.xcdatamodeld */; };
 		CB608C7F20DBB871004B2522 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB608C7E20DBB871004B2522 /* Assets.xcassets */; };
@@ -19,8 +19,8 @@
 		CB608C8D20DBB871004B2522 /* Corporative_LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C8C20DBB871004B2522 /* Corporative_LibraryTests.swift */; };
 		CB608C9820DBB871004B2522 /* Corporative_LibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */; };
 		CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB91E87320EA9AA50021D965 /* NetWork.swift */; };
-		CBB3DC5A20F29EE20017B59F /* AddingBookController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB3DC5920F29EE20017B59F /* AddingBookController.swift */; };
-		CBB6745F20E423D5008DF5EF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB6745E20E423D5008DF5EF /* TableViewController.swift */; };
+		CBB3DC5A20F29EE20017B59F /* AddingBookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */; };
+		CBB6745F20E423D5008DF5EF /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB6745E20E423D5008DF5EF /* TableVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,12 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CB1D406220E4CD8400CD95EC /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		CB1D406320E4CD8400CD95EC /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
-		CB1D406620E4CF7D00CD95EC /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		CB1D406220E4CD8400CD95EC /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		CB1D406320E4CD8400CD95EC /* BookCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCell.xib; sourceTree = "<group>"; };
+		CB1D406620E4CF7D00CD95EC /* CBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBook.swift; sourceTree = "<group>"; };
 		CB608C7120DBB870004B2522 /* Corporative Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corporative Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB608C7420DBB870004B2522 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB608C7620DBB870004B2522 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		CB608C7620DBB870004B2522 /* BookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookVC.swift; sourceTree = "<group>"; };
 		CB608C7920DBB870004B2522 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB608C7C20DBB870004B2522 /* Corporative_Library.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Corporative_Library.xcdatamodel; sourceTree = "<group>"; };
 		CB608C7E20DBB871004B2522 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,8 +59,8 @@
 		CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corporative_LibraryUITests.swift; sourceTree = "<group>"; };
 		CB608C9920DBB871004B2522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB91E87320EA9AA50021D965 /* NetWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
-		CBB3DC5920F29EE20017B59F /* AddingBookController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingBookController.swift; sourceTree = "<group>"; };
-		CBB6745E20E423D5008DF5EF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingBookVC.swift; sourceTree = "<group>"; };
+		CBB6745E20E423D5008DF5EF /* TableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,13 +113,13 @@
 			children = (
 				CB608C7420DBB870004B2522 /* AppDelegate.swift */,
 				CB91E87320EA9AA50021D965 /* NetWork.swift */,
-				CBB3DC5920F29EE20017B59F /* AddingBookController.swift */,
-				CB608C7620DBB870004B2522 /* BookViewController.swift */,
-				CBB6745E20E423D5008DF5EF /* TableViewController.swift */,
-				CB1D406220E4CD8400CD95EC /* TableViewCell.swift */,
-				CB1D406620E4CF7D00CD95EC /* Book.swift */,
+				CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */,
+				CB608C7620DBB870004B2522 /* BookVC.swift */,
+				CBB6745E20E423D5008DF5EF /* TableVC.swift */,
+				CB1D406220E4CD8400CD95EC /* BookCell.swift */,
+				CB1D406620E4CF7D00CD95EC /* CBook.swift */,
 				CB608C7820DBB870004B2522 /* Main.storyboard */,
-				CB1D406320E4CD8400CD95EC /* TableViewCell.xib */,
+				CB1D406320E4CD8400CD95EC /* BookCell.xib */,
 				CB608C7E20DBB871004B2522 /* Assets.xcassets */,
 				CB608C8020DBB871004B2522 /* LaunchScreen.storyboard */,
 				CB608C8320DBB871004B2522 /* Info.plist */,
@@ -251,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB608C8220DBB871004B2522 /* LaunchScreen.storyboard in Resources */,
-				CB1D406520E4CD8400CD95EC /* TableViewCell.xib in Resources */,
+				CB1D406520E4CD8400CD95EC /* BookCell.xib in Resources */,
 				CB608C7F20DBB871004B2522 /* Assets.xcassets in Resources */,
 				CB608C7A20DBB870004B2522 /* Main.storyboard in Resources */,
 			);
@@ -278,14 +278,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB1D406420E4CD8400CD95EC /* TableViewCell.swift in Sources */,
-				CB608C7720DBB870004B2522 /* BookViewController.swift in Sources */,
-				CB1D406720E4CF7D00CD95EC /* Book.swift in Sources */,
+				CB1D406420E4CD8400CD95EC /* BookCell.swift in Sources */,
+				CB608C7720DBB870004B2522 /* BookVC.swift in Sources */,
+				CB1D406720E4CF7D00CD95EC /* CBook.swift in Sources */,
 				CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */,
 				CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */,
-				CBB6745F20E423D5008DF5EF /* TableViewController.swift in Sources */,
+				CBB6745F20E423D5008DF5EF /* TableVC.swift in Sources */,
 				CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */,
-				CBB3DC5A20F29EE20017B59F /* AddingBookController.swift in Sources */,
+				CBB3DC5A20F29EE20017B59F /* AddingBookVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,7 +461,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DQ34MQ3ZUS;
 				INFOPLIST_FILE = "Corporative Library/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -480,7 +480,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DQ34MQ3ZUS;
 				INFOPLIST_FILE = "Corporative Library/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -15,7 +14,7 @@
         <!--Adding Book-->
         <scene sceneID="SqD-kq-sid">
             <objects>
-                <viewController title="Adding Book" id="ZLe-xQ-C3a" customClass="AddingBookController" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Adding Book" id="ZLe-xQ-C3a" customClass="AddingBookVC" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6gy-sK-q0h" userLabel="Adding Book View">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,13 +168,13 @@
         <!--Books-->
         <scene sceneID="uhx-Z0-4p6">
             <objects>
-                <tableViewController id="xRU-p3-kYW" customClass="TableViewController" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="xRU-p3-kYW" customClass="TableVC" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vJW-ls-Q9x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="160" id="I62-Vi-zWA" customClass="TableViewCell" customModule="Corporative_Library" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="160" id="I62-Vi-zWA" customClass="BookCell" customModule="Corporative_Library" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I62-Vi-zWA" id="Kzj-XP-cBr">
@@ -255,10 +254,10 @@
                                     <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="AuthorName" destination="nIE-If-MhW" id="rHE-KT-0Yt"/>
-                                    <outlet property="BookName" destination="yh7-He-XAA" id="2Gq-YW-PhC"/>
-                                    <outlet property="availableValue" destination="Dfy-yY-st7" id="Yzq-i0-O8e"/>
-                                    <outlet property="characterImage" destination="0Mb-2x-elp" id="iIy-OP-xgJ"/>
+                                    <outlet property="AuthorName" destination="nIE-If-MhW" id="OzN-FK-wdp"/>
+                                    <outlet property="BookName" destination="yh7-He-XAA" id="bXi-oS-O90"/>
+                                    <outlet property="availableValue" destination="Dfy-yY-st7" id="Ty4-Xz-aRq"/>
+                                    <outlet property="characterImage" destination="0Mb-2x-elp" id="wrK-Ku-rK2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -285,7 +284,7 @@
         <!--Book Info-->
         <scene sceneID="FA9-Q3-vwq">
             <objects>
-                <viewController id="D2F-DB-lKy" customClass="BookViewController" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="D2F-DB-lKy" customClass="BookVC" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rYv-v5-Lyb" userLabel="Book">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -422,20 +421,29 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You should enter your name. Else book doesn't reservation." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9U1-MH-bKc">
+                                        <rect key="frame" x="8" y="630" width="304" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" id="0vw-SP-r7j"/>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="2Oz-6N-Jls"/>
                                     <constraint firstAttribute="trailing" secondItem="pQe-Iq-UgT" secondAttribute="trailing" constant="80" id="BgM-XA-sb0"/>
+                                    <constraint firstItem="9U1-MH-bKc" firstAttribute="top" secondItem="Apc-AR-Wk8" secondAttribute="bottom" constant="2" id="CjJ-RW-ElP"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="12" id="Cnh-xE-KGm"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="top" secondItem="pQe-Iq-UgT" secondAttribute="bottom" constant="10" id="DIg-EE-7l9"/>
                                     <constraint firstItem="Apc-AR-Wk8" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="GIB-Gd-Yfb"/>
                                     <constraint firstItem="Apc-AR-Wk8" firstAttribute="top" secondItem="hRb-ve-QAp" secondAttribute="bottom" constant="23" id="Il8-uX-AnU"/>
-                                    <constraint firstAttribute="bottom" secondItem="Apc-AR-Wk8" secondAttribute="bottom" constant="10" id="Rd0-Yp-NAl"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="15" id="S79-1L-MQs"/>
                                     <constraint firstItem="pQe-Iq-UgT" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="80" id="U1Y-af-n1R"/>
                                     <constraint firstAttribute="trailing" secondItem="vx8-eM-KeF" secondAttribute="trailing" id="gUz-zc-ohE"/>
                                     <constraint firstItem="Apc-AR-Wk8" firstAttribute="centerX" secondItem="Qri-N1-sGR" secondAttribute="centerX" id="m7X-eB-AvF"/>
+                                    <constraint firstAttribute="bottom" secondItem="9U1-MH-bKc" secondAttribute="bottom" constant="3" id="qXl-El-UHj"/>
+                                    <constraint firstItem="9U1-MH-bKc" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="8" id="qkP-el-WyO"/>
+                                    <constraint firstAttribute="trailing" secondItem="9U1-MH-bKc" secondAttribute="trailing" constant="8" id="rkV-72-IS9"/>
                                     <constraint firstAttribute="trailing" secondItem="i0m-Ag-Voi" secondAttribute="trailing" constant="8" id="sOi-Zc-1uC"/>
                                     <constraint firstItem="pQe-Iq-UgT" firstAttribute="top" secondItem="vx8-eM-KeF" secondAttribute="bottom" constant="22" id="w1i-PU-G4c"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="top" secondItem="i0m-Ag-Voi" secondAttribute="bottom" constant="10" id="wcG-dd-uKS"/>
@@ -480,7 +488,9 @@
                         <outlet property="descriptionBook" destination="hRb-ve-QAp" id="6sY-uw-Kpq"/>
                         <outlet property="enteringName" destination="Apc-AR-Wk8" id="l0q-qj-pMf"/>
                         <outlet property="linkToBookButton" destination="Kk2-kq-37j" id="dEw-l5-2ik"/>
+                        <outlet property="scrollView" destination="Qri-N1-sGR" id="xIh-Dx-wdx"/>
                         <outlet property="titleChosenBook" destination="CBF-pC-Zk8" id="rQr-Cs-ivJ"/>
+                        <outlet property="warningLabel" destination="9U1-MH-bKc" id="pq6-x5-yyJ"/>
                         <outlet property="yearBook" destination="gk0-GN-glP" id="Me4-fO-xlh"/>
                     </connections>
                 </viewController>
