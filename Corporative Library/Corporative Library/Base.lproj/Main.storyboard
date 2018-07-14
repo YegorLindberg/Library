@@ -31,7 +31,7 @@
                                                     <constraint firstAttribute="width" secondItem="YZ0-6a-gHH" secondAttribute="height" multiplier="259:24" id="jNO-1p-xVu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Book Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tql-FV-CHy">
@@ -95,7 +95,6 @@
                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.1960784314" green="0.80240491869999997" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="S0z-Nz-Xbl" firstAttribute="centerX" secondItem="4Pe-zf-n7C" secondAttribute="centerX" constant="1" id="2Nz-d0-BBO"/>
                                             <constraint firstItem="S0z-Nz-Xbl" firstAttribute="width" secondItem="4Pe-zf-n7C" secondAttribute="width" id="302-Y9-AAR"/>
@@ -142,7 +141,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ssH-qh-bZi" firstAttribute="bottom" secondItem="83w-KC-oyh" secondAttribute="bottom" id="6tJ-8x-PUg"/>
                             <constraint firstItem="ssH-qh-bZi" firstAttribute="leading" secondItem="83w-KC-oyh" secondAttribute="leading" id="FAq-DR-7xQ"/>
@@ -274,6 +272,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="MainTableView" destination="vJW-ls-Q9x" id="ll7-EB-iZS"/>
                         <segue destination="D2F-DB-lKy" kind="show" identifier="selectBook" id="koo-wP-djs"/>
                     </connections>
                 </tableViewController>

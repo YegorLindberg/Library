@@ -10,49 +10,49 @@ import UIKit
 
 class TableVC: UITableViewController {
     
-    lazy var refresher: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor.darkGray
-        refreshControl.addTarget(self, action: #selector(downloadFirstPage), for: .valueChanged)
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    private func startActiveIndicator() {
+        activityIndicator.center = self.tableView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
         
-        return refreshControl
-    }()
-    
-    private var partOfBooks = [Book]()
-    
-    @objc func downloadFirstPage() {
-        let urlString = "https://libraryomega.herokuapp.com/books/showPage/1"
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            
-            guard let data = data, error == nil, response != nil else {
-                print("Something with URL is wrong.")
-                return
-            }
-            guard error == nil else { return }
-            do {
-                let someBooks = try JSONDecoder().decode([Book].self, from: data)
-                self.partOfBooks = someBooks
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-                print(someBooks[0].name, "\n")
-                print(someBooks[1].name, "\n")
-            } catch let error {
-                print(error)
-            }
-        }.resume()
-        refresher.endRefreshing()
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
     }
+    private func stopActiveIndicator() {
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+//    private var partOfBooks: [Book] = Array()
+//    var partOfBooks: [Book] = []
+    private var partOfBooks = [Book]()
+    private var currentPage = 1
+    private var shouldShowLoadingCell = false
+    var refresh: UIRefreshControl!
+    
+    var fetchingMore = false
+    var endOfPaging = false
+
+    @IBOutlet var MainTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.refreshControl = refresher
+        //MainTableView.dataSource = self
+        MainTableView.delegate = self
+
+        self.refresh = UIRefreshControl()
+        self.refresh.attributedTitle = NSAttributedString(string: "Pull to refresh...")
+        
+        self.refresh.addTarget(self, action: #selector(TableVC.downloadFirstPage), for: UIControlEvents.valueChanged)
+        self.refresh.tintColor = UIColor.gray
+        tableView.addSubview(refresh)
+        self.refresh.beginRefreshing()
         
         downloadFirstPage()
-        
+  
         // --- Get-requests to load new data(pages)
         
         // Uncomment the following line to preserve selection between presentations
@@ -62,7 +62,58 @@ class TableVC: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    @objc func downloadFirstPage() {
+        self.fetchingMore = true
+        currentPage = 1
+        endOfPaging = false
+        loadBooks(refresh: true)
+    }
     
+    func loadBooks(refresh: Bool = false) {
+        if refresh == false {
+            currentPage += 1
+        }
+        print("fetch page: \(self.currentPage)")
+        downloadPage(page: self.currentPage)
+    }
+    
+    func downloadPage(page: Int) {
+        let urlString = "https://libraryomega.herokuapp.com/books/showPage/" + String(page)
+        guard let url = URL(string: urlString) else { return }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let data = data, error == nil, response != nil else {
+                    print("Something with URL is wrong.")
+                    return
+                }
+                guard error == nil else { return }
+                do {
+                    let someBooks = try JSONDecoder().decode([Book].self, from: data)
+                    if someBooks.count == 0 {
+                        print("empty array was made. Last page is \(self.currentPage - 1)\n")
+                        self.endOfPaging = true
+                    } else {
+                        if page == 1 {
+                            self.partOfBooks = someBooks
+                        } else {
+                            self.partOfBooks += someBooks
+                        }
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                        self.fetchingMore = false
+                        
+                        print("this is NetWork sent(inside):\n\(self.partOfBooks)\n\n")
+                    }
+                } catch let error {
+                    print(error)
+                }
+            }.resume()
+        self.refresh?.endRefreshing()
+        if page != 1 {
+            self.stopActiveIndicator()
+        }        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -78,10 +129,9 @@ class TableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return partOfBooks.count
+        return self.partOfBooks.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookCell.identifier) as? BookCell else { return UITableViewCell() }
         
@@ -95,16 +145,36 @@ class TableVC: UITableViewController {
         return 160.0
     }
     
+    //sent data to another VC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "selectBook", sender: partOfBooks[indexPath.item])
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectBook" {
             if let selectedBook = sender as? Book, let destinationViewController = segue.destination as? BookVC {
                 destinationViewController.postBook = selectedBook
             }
         }
+    }
+    
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        //print("offset y: \(offsetY), scroll height: \(contentHeight)")
+        if !endOfPaging {
+            if offsetY > contentHeight - scrollView.frame.height {
+                if self.fetchingMore == false {
+                    beginBatchFetch()
+                }
+            }
+        }
+    }
+    func beginBatchFetch() {
+        startActiveIndicator()
+        self.fetchingMore = true
+        print("beginBatchFetch!")
+        loadBooks()
     }
     
     /*

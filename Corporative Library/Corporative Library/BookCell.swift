@@ -16,22 +16,39 @@ extension UITableViewCell {
 
 class BookCell: UITableViewCell {
     
+    var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var BookName: UILabel!
     @IBOutlet weak var AuthorName: UILabel!
     @IBOutlet weak var availableValue: UILabel!
     
     @IBOutlet weak var characterImage: UIImageView!
     
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    private func setupSubviews() {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.activityIndicatorViewStyle = .gray
+        indicator.hidesWhenStopped = true
         
-        BookName.text?.removeAll()
-        AuthorName.text?.removeAll()
-        availableValue.text?.removeAll()
-     
-        characterImage.image = nil
+        contentView.addSubview(indicator)
+        
+        NSLayoutConstraint.activate([
+            indicator.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            indicator.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
+        indicator.startAnimating()
     }
+    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//
+//        BookName.text?.removeAll()
+//        AuthorName.text?.removeAll()
+//        availableValue.text?.removeAll()
+//
+//        characterImage.image = nil
+//    }
     
     func populate(with book: Book) {
         BookName.text = book.name
@@ -59,6 +76,10 @@ class BookCell: UITableViewCell {
         //            }
         //        }
     }
+    
+    
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

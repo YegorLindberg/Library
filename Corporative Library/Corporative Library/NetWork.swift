@@ -8,29 +8,6 @@
 
 import Foundation
 
-func downloadNextPage(page: Int) -> [Book] {
-    var partOfBooks = [Book]()
-    let urlString = "https://libraryomega.herokuapp.com/books/showPage/" + String(page)
-    guard let url = URL(string: urlString) else { return [] }
-    
-    URLSession.shared.dataTask(with: url) { (data, response, error) in
-        
-        guard let data = data, error == nil, response != nil else {
-            print("Something with URL is wrong.")
-            return
-        }
-        guard error == nil else { return }
-        do {
-            let someBooks = try JSONDecoder().decode([Book].self, from: data)
-                partOfBooks = someBooks
-            print(someBooks[0].name, "\n")
-        } catch let error {
-            print(error)
-        }
-    }.resume()
-    return partOfBooks
-}
-
 func postCancel(id_book: String) {
 
     print(id_book)
