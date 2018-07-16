@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class TableVC: UITableViewController, UISearchBarDelegate {
 
@@ -19,6 +20,8 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     private var currentPage = 1
     private var shouldShowLoadingCell = false
     var refresh: UIRefreshControl!
+    var selectedBarIndex = 0
+    
     
     var fetchingMore = false
     var endOfPaging = false
@@ -69,8 +72,14 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         if refresh == false {
             currentPage += 1
         }
+        
+        self.selectedBarIndex = self.searchBar.selectedScopeButtonIndex
+        
         print("fetch page: \(self.currentPage)")
         downloadPage(page: self.currentPage)
+        
+        self.searchBar(self.searchBar, textDidChange: (self.searchBar.text)!)
+        self.searchBar(self.searchBar, selectedScopeButtonIndexDidChange: selectedBarIndex)
     }
     
     func downloadPage(page: Int) {
@@ -98,6 +107,7 @@ class TableVC: UITableViewController, UISearchBarDelegate {
                             self.tableView.reloadData()
                         }
                         self.fetchingMore = false
+                        
                         self.currentSelectedBooks = self.partOfBooks
                         print("this is NetWork sent(inside):\n\(self.partOfBooks)\n\n")
                     }
@@ -109,6 +119,40 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         if page != 1 {
             self.stopActiveIndicator()
         }        
+    }
+    
+    func searchingBooks(substring: String) {
+        print("search book for substring: \(substring)")
+        var allowed = CharacterSet.alphanumerics
+        allowed.insert(charactersIn: ".-_")
+        let encoded = substring.addingPercentEncoding(withAllowedCharacters: allowed)
+        let makedUrl = "https://libraryomega.herokuapp.com/books/searchBook?substring=\(encoded!)"
+        print("maked url: \(makedUrl)")
+        guard let url = URL(string: makedUrl) else {
+            print("URL cancelled error.")
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+                guard let data = data, error == nil, response != nil else {
+                    print("Something with URL is wrong.")
+                    return
+                }
+                guard error == nil else {
+                    print("error in searching books. Somtething goes wrong.")
+                    return
+                }
+                do {
+                    let someBooks = try JSONDecoder().decode([Book].self, from: data)
+                    self.currentSelectedBooks = someBooks
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                } catch let error {
+                    print(error)
+                }
+            }.resume()
+        self.refresh?.endRefreshing()
     }
     
     /// download indicator
@@ -152,9 +196,11 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         }
         MainTableView.reloadData()
     }
-
-    func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
-        currentSelectedBooks = partOfBooks
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("search Bar Search Button Clicked")
+        searchBar.resignFirstResponder()
+        searchingBooks(substring: (self.searchBar.text)!)
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
