@@ -8,26 +8,14 @@
 
 import UIKit
 
-class TableVC: UITableViewController {
-    
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    private func startActiveIndicator() {
-        activityIndicator.center = self.tableView.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    private func stopActiveIndicator() {
-        activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
-    }
+class TableVC: UITableViewController, UISearchBarDelegate {
+
+    @IBOutlet weak var searchBar: UISearchBar!
     
 //    private var partOfBooks: [Book] = Array()
 //    var partOfBooks: [Book] = []
     private var partOfBooks = [Book]()
+    private var currentSelectedBooks = [Book]() // update the table
     private var currentPage = 1
     private var shouldShowLoadingCell = false
     var refresh: UIRefreshControl!
@@ -41,8 +29,8 @@ class TableVC: UITableViewController {
         super.viewDidLoad()
         
         //MainTableView.dataSource = self
-        MainTableView.delegate = self
-
+        //MainTableView.delegate = self
+        //self.HideKeyboard()
         self.refresh = UIRefreshControl()
         self.refresh.attributedTitle = NSAttributedString(string: "Pull to refresh...")
         
@@ -53,6 +41,14 @@ class TableVC: UITableViewController {
         
         downloadFirstPage()
   
+        searchBar.delegate = self
+        searchBar.placeholder = "Search book by name"
+        searchBar.tintColor = UIColor.gray
+        
+        
+        searchBar.enablesReturnKeyAutomatically = true
+        
+        
         // --- Get-requests to load new data(pages)
         
         // Uncomment the following line to preserve selection between presentations
@@ -102,7 +98,7 @@ class TableVC: UITableViewController {
                             self.tableView.reloadData()
                         }
                         self.fetchingMore = false
-                        
+                        self.currentSelectedBooks = self.partOfBooks
                         print("this is NetWork sent(inside):\n\(self.partOfBooks)\n\n")
                     }
                 } catch let error {
@@ -114,6 +110,82 @@ class TableVC: UITableViewController {
             self.stopActiveIndicator()
         }        
     }
+    
+    /// download indicator
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    private func startActiveIndicator() {
+        activityIndicator.center = self.tableView.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
+        UIApplication.shared.beginIgnoringInteractionEvents()
+    }
+    private func stopActiveIndicator() {
+        activityIndicator.stopAnimating()
+        UIApplication.shared.endIgnoringInteractionEvents()
+    }
+    
+    /// search bar
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.isSearchResultsButtonSelected == true {
+            currentSelectedBooks = partOfBooks
+        } else {
+            currentSelectedBooks = partOfBooks.filter({ book -> Bool in
+                switch searchBar.selectedScopeButtonIndex {
+                case 0:
+                    if searchText.isEmpty { return true }
+                    return book.name.lowercased().contains(searchText.lowercased())
+                case 1:
+                    if searchText.isEmpty { return book.available == true }
+                    return book.name.lowercased().contains(searchText.lowercased()) &&
+                        book.available == true
+                case 2:
+                    if searchText.isEmpty { return book.available == false }
+                    return book.name.lowercased().contains(searchText.lowercased()) &&
+                        book.available == false
+                default:
+                    return false
+                }
+            })
+        }
+        MainTableView.reloadData()
+    }
+
+    func searchBarResultsListButtonClicked(_ searchBar: UISearchBar) {
+        currentSelectedBooks = partOfBooks
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        switch selectedScope {
+        case 0:
+            currentSelectedBooks = partOfBooks
+        case 1:
+            currentSelectedBooks = partOfBooks.filter({ book -> Bool in
+                book.available == true
+            })
+        case 2:
+            currentSelectedBooks = partOfBooks.filter({ book -> Bool in
+                book.available == false
+            })
+        default:
+            break
+        }
+        MainTableView.reloadData()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+    }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -129,14 +201,14 @@ class TableVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.partOfBooks.count
+        return self.currentSelectedBooks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookCell.identifier) as? BookCell else { return UITableViewCell() }
         
         // Configure the cell...
-        cell.populate(with: partOfBooks[indexPath.row])
+        cell.populate(with: currentSelectedBooks[indexPath.row])
         
         return cell
     }
@@ -145,9 +217,9 @@ class TableVC: UITableViewController {
         return 160.0
     }
     
-    //sent data to another VC
+    /// sent data to another VC
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "selectBook", sender: partOfBooks[indexPath.item])
+        performSegue(withIdentifier: "selectBook", sender: currentSelectedBooks[indexPath.item])
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "selectBook" {
@@ -157,7 +229,7 @@ class TableVC: UITableViewController {
         }
     }
     
-    
+    /// infinite scroll
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height

@@ -8,13 +8,19 @@
 
 import Foundation
 
-func postCancel(id_book: String) {
+func postRemoving(id_book: String, remove: Bool) {
 
     print(id_book)
     
     let infoAboutBook = ["id":id_book]
     
-    let urlString = "https://libraryomega.herokuapp.com/cancelBooking"
+    var urlString = "https://libraryomega.herokuapp.com/"
+    if remove {
+        urlString += "books/delete"
+    } else {
+        urlString += "cancelBooking"
+    }
+    
     guard let url = URL(string: urlString) else { return }
     var request = URLRequest(url: url)
     

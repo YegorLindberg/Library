@@ -16,6 +16,7 @@ extension BookVC: UITextFieldDelegate {
 }
 
 class BookVC: UIViewController {
+    var postBook: Book!
     
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -31,7 +32,25 @@ class BookVC: UIViewController {
     @IBOutlet weak var linkToBookButton: UIButton!
     @IBOutlet weak var changingButton: UIButton!
     
-    var postBook: Book!
+    @IBAction func deleteBook(_ sender: UIBarButtonItem) {
+        alertFromRemove(title: "Are you sure you want to remove this book ?", message: nil)
+    }
+    
+    func alertFromRemove(title: String, message: String?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+            postRemoving(id_book: self.postBook._id, remove: true)
+            print("deleting book with name \(self.postBook.name).\n")
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+            print("cancel deleting.\n")
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +74,7 @@ class BookVC: UIViewController {
         descriptionBook.text = postBook.description
         descriptionBook.sizeToFit()
         
-        self.HideKeyboard()
+//        self.HideKeyboard()
         
         NotificationCenter.default.addObserver(self, selector: #selector(Keyboard), name: Notification.Name.UIKeyboardDidHide, object: nil)
         
@@ -111,7 +130,7 @@ class BookVC: UIViewController {
             }
         } else {
             print("id -remove- reservation book: ", postBook._id)
-            postCancel(id_book: postBook._id)
+            postRemoving(id_book: postBook._id, remove: false)
             print("not-available.\n")
         }
     }
