@@ -51,8 +51,7 @@ func postRemoving(id_book: String, remove: Bool) {
 func postTake(id_book: String, Name: String) {
     
     print(id_book)
-    
-    //let takedBook: takeBook = .init(id: id_book, name: Name)
+
     let infoAboutBook = ["id":id_book, "name":Name]
     
     let urlString = "https://libraryomega.herokuapp.com/booking"

@@ -12,9 +12,7 @@ import Alamofire
 class TableVC: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    
-//    private var partOfBooks: [Book] = Array()
-//    var partOfBooks: [Book] = []
+
     private var partOfBooks = [Book]()
     private var currentSelectedBooks = [Book]() // update the table
     private var currentPage = 1
@@ -31,9 +29,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //MainTableView.dataSource = self
-        //MainTableView.delegate = self
-        //self.HideKeyboard()
         self.refresh = UIRefreshControl()
         self.refresh.attributedTitle = NSAttributedString(string: "Pull to refresh...")
         
@@ -47,18 +42,7 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         searchBar.delegate = self
         searchBar.placeholder = "Search book by name"
         searchBar.tintColor = UIColor.gray
-        
-        
         searchBar.enablesReturnKeyAutomatically = true
-        
-        
-        // --- Get-requests to load new data(pages)
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     @objc func downloadFirstPage() {
@@ -72,10 +56,9 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         if refresh == false {
             currentPage += 1
         }
-        
         self.selectedBarIndex = self.searchBar.selectedScopeButtonIndex
-        
         print("fetch page: \(self.currentPage)")
+        
         downloadPage(page: self.currentPage)
         
         self.searchBar(self.searchBar, textDidChange: (self.searchBar.text)!)
@@ -116,9 +99,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
                 }
             }.resume()
         self.refresh?.endRefreshing()
-        if page != 1 {
-            self.stopActiveIndicator()
-        }        
     }
     
     func searchingBooks(substring: String) {
@@ -153,22 +133,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
                 }
             }.resume()
         self.refresh?.endRefreshing()
-    }
-    
-    /// download indicator
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    private func startActiveIndicator() {
-        activityIndicator.center = self.tableView.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-        UIApplication.shared.beginIgnoringInteractionEvents()
-    }
-    private func stopActiveIndicator() {
-        activityIndicator.stopAnimating()
-        UIApplication.shared.endIgnoringInteractionEvents()
     }
     
     /// search bar
@@ -232,7 +196,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     }
     
     
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -252,10 +215,8 @@ class TableVC: UITableViewController, UISearchBarDelegate {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: BookCell.identifier) as? BookCell else { return UITableViewCell() }
-        
         // Configure the cell...
         cell.populate(with: currentSelectedBooks[indexPath.row])
-        
         return cell
     }
     
@@ -289,55 +250,9 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         }
     }
     func beginBatchFetch() {
-        startActiveIndicator()
         self.fetchingMore = true
         print("beginBatchFetch!")
         loadBooks()
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -28,15 +28,10 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         self.descriptionAdd.delegate = self
         self.authorsAdd.delegate = self
         
-        //self.HideKeyboard()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(Keyboard), name: Notification.Name.UIKeyboardDidHide, object: nil)
 
         NotificationCenter.default.addObserver(self, selector: #selector(Keyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-        
-        // Do any additional setup after loading the view.
     }
-
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -51,11 +46,9 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("hide keyboard")
         hideKeyboard()
         return true
     }
-    
     
     @objc func Keyboard(notification: Notification) {
 
@@ -73,6 +66,12 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
+    func resultAlert(result: String) {
+        let resAlert = UIAlertController(title: "Adding book...", message: result, preferredStyle: .alert)
+        let confirmResult = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        resAlert.addAction(confirmResult)
+        self.present(resAlert, animated: true, completion: nil)
+    }
     
     @IBAction func AddingTapped(_ sender: UIButton) {
         let newTitle = titleAdd.text!
@@ -82,36 +81,8 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         let newYear = yearAdd.text!
         hideKeyboard()
         AddingBook(Name: newTitle, Link: newLink, Authors: newAuthors, Description: newDescription, Year: newYear)
-        //проверка года на число. Проверку решили делать на сервере, пока...
-//        if let newYear = Int(yearAdd.text!) {
-//            print(newYear)
-//            print("name: \(newTitle)\nlink: \(newLink)\nAuthors: \(newAuthors)\nDescription: \(newDescription)\nYear: \(newYear)")
-//
-//            AddingBook(Name: newTitle, Link: newLink, Authors: newAuthors, Description: newDescription, Year: newYear)
-//        } else {
-//            print("name: \(newTitle)\nlink: \(newLink)\nAuthors: \(newAuthors)\nDescription: \(newDescription)\nYear: \(0)")
-//
-//            AddingBook(Name: newTitle, Link: newLink, Authors: newAuthors, Description: newDescription, Year: 0)
-//        }
-        
-        
+        resultAlert(result: "If you have correctly completed all fields, you will be able to see your book list now!\nP.S. Year of the book must be an integer.")
         
     }
-    
-    
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

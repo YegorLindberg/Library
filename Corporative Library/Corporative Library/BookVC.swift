@@ -8,13 +8,6 @@
 
 import UIKit
 
-extension BookVC: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-}
-
 class BookVC: UIViewController {
     var postBook: Book!
     
@@ -27,8 +20,6 @@ class BookVC: UIViewController {
     @IBOutlet weak var yearBook: UILabel!
     @IBOutlet weak var descriptionBook: UILabel!
     
-    @IBOutlet weak var enteringName: UITextField!
-    
     @IBOutlet weak var linkToBookButton: UIButton!
     @IBOutlet weak var changingButton: UIButton!
     
@@ -38,24 +29,61 @@ class BookVC: UIViewController {
     
     func alertFromRemove(title: String, message: String?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
             postRemoving(id_book: self.postBook._id, remove: true)
-            print("deleting book with name \(self.postBook.name).\n")
+            self.resultAlert(result: "Book successfully deleted.")
         }))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
-            print("cancel deleting.\n")
         }))
         self.present(alert, animated: true, completion: nil)
     }
     
+    func alertToManageBook() {
+        let manageAlert = UIAlertController(title: "Confirm the action!", message: nil, preferredStyle: .alert)
+        if postBook.available == true {
+            manageAlert.addTextField { (textField) in
+                textField.placeholder = "Enter your name here..."
+                textField.keyboardType = .asciiCapable
+                
+            }
+            let confirmAction = UIAlertAction(title: "Take!", style: .default, handler: { (action) in
+                if (manageAlert.textFields?.first?.text != nil) && (manageAlert.textFields?.first?.text != "") {
+                    postTake(id_book: self.postBook._id, Name: manageAlert.textFields!.first!.text!)
+                    self.resultAlert(result: "Book successfully reserved!")
+                } else {
+                    self.resultAlert(result: "Book wasn't reservation, because you have not entered your name.")
+                }
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            })
+            manageAlert.addAction(confirmAction)
+            manageAlert.addAction(cancelAction)
+        } else {
+            let confirmAction = UIAlertAction(title: "Release", style: .default) { (action) in
+                postRemoving(id_book: self.postBook._id, remove: false)
+                self.resultAlert(result: "Book successfully free.")
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
+            }
+            manageAlert.addAction(confirmAction)
+            manageAlert.addAction(cancelAction)
+        }
+        self.present(manageAlert, animated: true, completion: nil)
+    }
+    
+    func resultAlert(result: String) {
+        let resAlert = UIAlertController(title: nil, message: result, preferredStyle: .alert)
+        let confirmResult = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        resAlert.addAction(confirmResult)
+        self.present(resAlert, animated: true, completion: nil)
+    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        enteringName.delegate = self
         
         currentImage.image = #imageLiteral(resourceName: "emptyImage")
         titleChosenBook.text = postBook.name
@@ -73,66 +101,11 @@ class BookVC: UIViewController {
         yearBook.text = String(postBook.year)
         descriptionBook.text = postBook.description
         descriptionBook.sizeToFit()
-        
-//        self.HideKeyboard()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(Keyboard), name: Notification.Name.UIKeyboardDidHide, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(Keyboard), name: Notification.Name.UIKeyboardWillChangeFrame, object: nil)
-        
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    func textFieldShouldeturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    @objc func Keyboard(notification: Notification) {
-        
-        let userInfo = notification.userInfo!
-        
-        let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-        
-        if notification.name == Notification.Name.UIKeyboardWillHide {
-            scrollView.contentInset = UIEdgeInsets.zero
-        } else {
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
-        }
-        
-        scrollView.scrollIndicatorInsets = scrollView.contentInset
-    }
-    
-    
-    var doubleTap = false
-    
-    @IBOutlet weak var warningLabel: UILabel!
+
     
     @IBAction func manageBook() {
-        if postBook.available == true {
-            enteringName.isHidden = false
-            if doubleTap {
-                if enteringName.text != nil && enteringName.text != "" {
-                    warningLabel.isHidden = false
-                    doubleTap = false
-                    postTake(id_book: postBook._id, Name: enteringName.text!)
-                    warningLabel.textColor = #colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1)
-                    warningLabel.text = "Book was reserved by: " + enteringName.text!
-                    print("id -add- reservation book: ", postBook._id)
-                    print("available\n")
-                } else {
-                    warningLabel.isHidden = false
-                }                
-            } else {
-                doubleTap = true
-            }
-        } else {
-            print("id -remove- reservation book: ", postBook._id)
-            postRemoving(id_book: postBook._id, remove: false)
-            print("not-available.\n")
-        }
+        alertToManageBook()
     }
     
     @IBAction func linkToBookButtonWasTapped(_ sender: UIButton) {
@@ -141,14 +114,7 @@ class BookVC: UIViewController {
             return
         }
         UIApplication.shared.open(urlToBook, options: [:], completionHandler: nil)
-        
     }
-    
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
-
 
 }
 

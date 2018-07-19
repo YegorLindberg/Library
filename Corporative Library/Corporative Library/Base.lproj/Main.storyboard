@@ -430,36 +430,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Apc-AR-Wk8">
-                                        <rect key="frame" x="0.0" y="598" width="320" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You should enter your name. Else book doesn't reservation." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9U1-MH-bKc">
-                                        <rect key="frame" x="8" y="630" width="304" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" id="0vw-SP-r7j"/>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="2Oz-6N-Jls"/>
                                     <constraint firstAttribute="trailing" secondItem="pQe-Iq-UgT" secondAttribute="trailing" constant="80" id="BgM-XA-sb0"/>
-                                    <constraint firstItem="9U1-MH-bKc" firstAttribute="top" secondItem="Apc-AR-Wk8" secondAttribute="bottom" constant="2" id="CjJ-RW-ElP"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="12" id="Cnh-xE-KGm"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="top" secondItem="pQe-Iq-UgT" secondAttribute="bottom" constant="10" id="DIg-EE-7l9"/>
-                                    <constraint firstItem="Apc-AR-Wk8" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="GIB-Gd-Yfb"/>
-                                    <constraint firstItem="Apc-AR-Wk8" firstAttribute="top" secondItem="hRb-ve-QAp" secondAttribute="bottom" constant="23" id="Il8-uX-AnU"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="15" id="S79-1L-MQs"/>
                                     <constraint firstItem="pQe-Iq-UgT" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="80" id="U1Y-af-n1R"/>
                                     <constraint firstAttribute="trailing" secondItem="vx8-eM-KeF" secondAttribute="trailing" id="gUz-zc-ohE"/>
-                                    <constraint firstItem="Apc-AR-Wk8" firstAttribute="centerX" secondItem="Qri-N1-sGR" secondAttribute="centerX" id="m7X-eB-AvF"/>
-                                    <constraint firstAttribute="bottom" secondItem="9U1-MH-bKc" secondAttribute="bottom" constant="3" id="qXl-El-UHj"/>
-                                    <constraint firstItem="9U1-MH-bKc" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="8" id="qkP-el-WyO"/>
-                                    <constraint firstAttribute="trailing" secondItem="9U1-MH-bKc" secondAttribute="trailing" constant="8" id="rkV-72-IS9"/>
+                                    <constraint firstAttribute="bottom" secondItem="hRb-ve-QAp" secondAttribute="bottom" constant="3" id="inB-Ei-1hA"/>
                                     <constraint firstAttribute="trailing" secondItem="i0m-Ag-Voi" secondAttribute="trailing" constant="8" id="sOi-Zc-1uC"/>
                                     <constraint firstItem="pQe-Iq-UgT" firstAttribute="top" secondItem="vx8-eM-KeF" secondAttribute="bottom" constant="22" id="w1i-PU-G4c"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="top" secondItem="i0m-Ag-Voi" secondAttribute="bottom" constant="10" id="wcG-dd-uKS"/>
@@ -508,11 +490,9 @@
                         <outlet property="changingButton" destination="2HD-Un-WJ0" id="VNQ-Fe-nqL"/>
                         <outlet property="currentImage" destination="pQe-Iq-UgT" id="RcU-6T-6xf"/>
                         <outlet property="descriptionBook" destination="hRb-ve-QAp" id="6sY-uw-Kpq"/>
-                        <outlet property="enteringName" destination="Apc-AR-Wk8" id="l0q-qj-pMf"/>
                         <outlet property="linkToBookButton" destination="Kk2-kq-37j" id="dEw-l5-2ik"/>
                         <outlet property="scrollView" destination="Qri-N1-sGR" id="xIh-Dx-wdx"/>
                         <outlet property="titleChosenBook" destination="CBF-pC-Zk8" id="rQr-Cs-ivJ"/>
-                        <outlet property="warningLabel" destination="9U1-MH-bKc" id="pq6-x5-yyJ"/>
                         <outlet property="yearBook" destination="gk0-GN-glP" id="Me4-fO-xlh"/>
                     </connections>
                 </viewController>
