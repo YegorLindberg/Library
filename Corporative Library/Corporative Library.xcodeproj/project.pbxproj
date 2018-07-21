@@ -19,6 +19,7 @@
 		CB608C8220DBB871004B2522 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB608C8020DBB871004B2522 /* LaunchScreen.storyboard */; };
 		CB608C8D20DBB871004B2522 /* Corporative_LibraryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C8C20DBB871004B2522 /* Corporative_LibraryTests.swift */; };
 		CB608C9820DBB871004B2522 /* Corporative_LibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */; };
+		CB78B60021021031006EAAE7 /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB78B5FF21021031006EAAE7 /* NetworkWorker.swift */; };
 		CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB91E87320EA9AA50021D965 /* NetWork.swift */; };
 		CBB3DC5A20F29EE20017B59F /* AddingBookVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */; };
 		CBB6745F20E423D5008DF5EF /* TableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB6745E20E423D5008DF5EF /* TableVC.swift */; };
@@ -63,6 +64,7 @@
 		CB608C9320DBB871004B2522 /* Corporative LibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Corporative LibraryUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB608C9720DBB871004B2522 /* Corporative_LibraryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Corporative_LibraryUITests.swift; sourceTree = "<group>"; };
 		CB608C9920DBB871004B2522 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB78B5FF21021031006EAAE7 /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		CB91E87320EA9AA50021D965 /* NetWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingBookVC.swift; sourceTree = "<group>"; };
 		CBB6745E20E423D5008DF5EF /* TableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVC.swift; sourceTree = "<group>"; };
@@ -115,8 +117,12 @@
 		CB608C6820DBB870004B2522 = {
 			isa = PBXGroup;
 			children = (
-				CBC1DE3020FD0A3200C03DFB /* Podfile */,
+				CB78B60321021741006EAAE7 /* View */,
+				CB78B6022102173B006EAAE7 /* Model */,
+				CB78B60121021736006EAAE7 /* Controller */,
+				CBB1FAA8210317EC00A58693 /* Network */,
 				CB608C7320DBB870004B2522 /* Corporative Library */,
+				CBC1DE3020FD0A3200C03DFB /* Podfile */,
 				CB608C8B20DBB871004B2522 /* Corporative LibraryTests */,
 				CB608C9620DBB871004B2522 /* Corporative LibraryUITests */,
 				CB608C7220DBB870004B2522 /* Products */,
@@ -139,16 +145,6 @@
 			isa = PBXGroup;
 			children = (
 				CB608C7420DBB870004B2522 /* AppDelegate.swift */,
-				CB91E87320EA9AA50021D965 /* NetWork.swift */,
-				CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */,
-				CB608C7620DBB870004B2522 /* BookVC.swift */,
-				CBB6745E20E423D5008DF5EF /* TableVC.swift */,
-				CB1D406220E4CD8400CD95EC /* BookCell.swift */,
-				CB1D406620E4CF7D00CD95EC /* CBook.swift */,
-				CB608C7820DBB870004B2522 /* Main.storyboard */,
-				CB1D406320E4CD8400CD95EC /* BookCell.xib */,
-				CB608C7E20DBB871004B2522 /* Assets.xcassets */,
-				CB608C8020DBB871004B2522 /* LaunchScreen.storyboard */,
 				CB608C8320DBB871004B2522 /* Info.plist */,
 				CB608C7B20DBB870004B2522 /* Corporative_Library.xcdatamodeld */,
 			);
@@ -171,6 +167,45 @@
 				CB608C9920DBB871004B2522 /* Info.plist */,
 			);
 			path = "Corporative LibraryUITests";
+			sourceTree = "<group>";
+		};
+		CB78B60121021736006EAAE7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CBB3DC5920F29EE20017B59F /* AddingBookVC.swift */,
+				CB608C7620DBB870004B2522 /* BookVC.swift */,
+				CBB6745E20E423D5008DF5EF /* TableVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		CB78B6022102173B006EAAE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CB1D406220E4CD8400CD95EC /* BookCell.swift */,
+				CB1D406620E4CF7D00CD95EC /* CBook.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CB78B60321021741006EAAE7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CB1D406320E4CD8400CD95EC /* BookCell.xib */,
+				CB608C7E20DBB871004B2522 /* Assets.xcassets */,
+				CB608C7820DBB870004B2522 /* Main.storyboard */,
+				CB608C8020DBB871004B2522 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CBB1FAA8210317EC00A58693 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CB91E87320EA9AA50021D965 /* NetWork.swift */,
+				CB78B5FF21021031006EAAE7 /* NetworkWorker.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +387,7 @@
 				CB1D406720E4CF7D00CD95EC /* CBook.swift in Sources */,
 				CB608C7D20DBB870004B2522 /* Corporative_Library.xcdatamodeld in Sources */,
 				CB608C7520DBB870004B2522 /* AppDelegate.swift in Sources */,
+				CB78B60021021031006EAAE7 /* NetworkWorker.swift in Sources */,
 				CBB6745F20E423D5008DF5EF /* TableVC.swift in Sources */,
 				CB91E87420EA9AA50021D965 /* NetWork.swift in Sources */,
 				CBB3DC5A20F29EE20017B59F /* AddingBookVC.swift in Sources */,

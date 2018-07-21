@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Alamofire
 
 class TableVC: UITableViewController, UISearchBarDelegate {
+
+    let networkWorker = NetworkWorker()
 
     @IBOutlet weak var searchBar: UISearchBar!
 
@@ -59,80 +60,37 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         self.selectedBarIndex = self.searchBar.selectedScopeButtonIndex
         print("fetch page: \(self.currentPage)")
         
-        downloadPage(page: self.currentPage)
-        
-        self.searchBar(self.searchBar, textDidChange: (self.searchBar.text)!)
-        self.searchBar(self.searchBar, selectedScopeButtonIndexDidChange: selectedBarIndex)
+        networkWorker.delegate = self
+        networkWorker.loadAndUpdateDataFromNet(page: currentPage)
+
     }
     
-    func downloadPage(page: Int) {
-        let urlString = "https://libraryomega.herokuapp.com/books/showPage/" + String(page)
-        guard let url = URL(string: urlString) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data, error == nil, response != nil else {
-                    print("Something with URL is wrong.")
-                    return
-                }
-                guard error == nil else { return }
-                do {
-                    let someBooks = try JSONDecoder().decode([Book].self, from: data)
-                    if someBooks.count == 0 {
-                        print("empty array was made. Last page is \(self.currentPage - 1)\n")
-                        self.endOfPaging = true
-                    } else {
-                        if page == 1 {
-                            self.partOfBooks = someBooks
-                        } else {
-                            self.partOfBooks += someBooks
-                        }
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                        self.fetchingMore = false
-                        
-                        self.currentSelectedBooks = self.partOfBooks
-                        print("this is NetWork sent(inside):\n\(self.partOfBooks)\n\n")
-                    }
-                } catch let error {
-                    print(error)
-                }
-            }.resume()
-        self.refresh?.endRefreshing()
-    }
-    
-    func searchingBooks(substring: String) {
-        print("search book for substring: \(substring)")
-        var allowed = CharacterSet.alphanumerics
-        allowed.insert(charactersIn: ".-_")
-        let encoded = substring.addingPercentEncoding(withAllowedCharacters: allowed)
-        let makedUrl = "https://libraryomega.herokuapp.com/books/searchBook?substring=\(encoded!)"
-        print("maked url: \(makedUrl)")
-        guard let url = URL(string: makedUrl) else {
-            print("URL cancelled error.")
-            return
+    func updateTableVCWithData(_ data: [Book]) {
+        if data.count == 0 {
+            print("empty array was made. Last page is \(currentPage - 1)\n")
+            endOfPaging = true
+        } else {
+            if currentPage == 1 {
+                partOfBooks = data
+            } else {
+                partOfBooks += data
+            }
+            currentSelectedBooks = partOfBooks
+            DispatchQueue.main.async {
+                self.MainTableView.reloadData()
+                print("in main queue")
+                self.refresh?.endRefreshing()
+                self.fetchingMore = false
+            }
         }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data, error == nil, response != nil else {
-                    print("Something with URL is wrong.")
-                    return
-                }
-                guard error == nil else {
-                    print("error in searching books. Somtething goes wrong.")
-                    return
-                }
-                do {
-                    let someBooks = try JSONDecoder().decode([Book].self, from: data)
-                    self.currentSelectedBooks = someBooks
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } catch let error {
-                    print(error)
-                }
-            }.resume()
-        self.refresh?.endRefreshing()
+    }
+    
+    func updateTableVCWithSearchingData(_ data: [Book]) {
+        currentSelectedBooks = data
+        DispatchQueue.main.async {
+            self.MainTableView.reloadData()
+            self.refresh?.endRefreshing()
+        }
     }
     
     /// search bar
@@ -143,16 +101,20 @@ class TableVC: UITableViewController, UISearchBarDelegate {
             currentSelectedBooks = partOfBooks.filter({ book -> Bool in
                 switch searchBar.selectedScopeButtonIndex {
                 case 0:
-                    if searchText.isEmpty { return true }
+                    if searchText.isEmpty {
+                        return true
+                    }
                     return book.name.lowercased().contains(searchText.lowercased())
                 case 1:
-                    if searchText.isEmpty { return book.available == true }
-                    return book.name.lowercased().contains(searchText.lowercased()) &&
-                        book.available == true
+                    if searchText.isEmpty {
+                        return book.available == true
+                    }
+                    return book.name.lowercased().contains(searchText.lowercased()) && book.available == true
                 case 2:
-                    if searchText.isEmpty { return book.available == false }
-                    return book.name.lowercased().contains(searchText.lowercased()) &&
-                        book.available == false
+                    if searchText.isEmpty {
+                        return book.available == false
+                    }
+                    return book.name.lowercased().contains(searchText.lowercased()) && book.available == false
                 default:
                     return false
                 }
@@ -164,18 +126,23 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("search Bar Search Button Clicked")
         searchBar.resignFirstResponder()
-        searchingBooks(substring: (self.searchBar.text)!)
+        networkWorker.loadSearchingDataFromNet(substring: (self.searchBar.text)!)
     }
     
+    
+    var currentScope = 0
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         switch selectedScope {
         case 0:
+            currentScope = 0
             currentSelectedBooks = partOfBooks
         case 1:
+            currentScope = 1
             currentSelectedBooks = partOfBooks.filter({ book -> Bool in
                 book.available == true
             })
         case 2:
+            currentScope = 2
             currentSelectedBooks = partOfBooks.filter({ book -> Bool in
                 book.available == false
             })
@@ -194,14 +161,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -240,18 +199,20 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
-        //print("offset y: \(offsetY), scroll height: \(contentHeight)")
-        if !endOfPaging {
-            if offsetY > contentHeight - scrollView.frame.height {
-                if self.fetchingMore == false {
-                    beginBatchFetch()
+        if currentScope == 0 {
+            if !endOfPaging {
+                if offsetY > contentHeight - scrollView.frame.size.height {
+                    if fetchingMore == false {
+                        beginBatchFetch()
+                    }
                 }
+
             }
         }
     }
     func beginBatchFetch() {
-        self.fetchingMore = true
-        print("beginBatchFetch!")
+        fetchingMore = true
+        print("\n\nbeginBatchFetch!")
         loadBooks()
     }
 
