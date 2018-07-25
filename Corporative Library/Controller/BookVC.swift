@@ -32,7 +32,8 @@ class BookVC: UIViewController {
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
             postRemoving(id_book: self.postBook._id, remove: true)
-            self.resultAlert(result: "Book successfully deleted.")
+            self.navigationController?.popViewController(animated: true)
+//            print("идет и до сюда, лол")
         }))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
             alert.dismiss(animated: true, completion: nil)
@@ -51,7 +52,8 @@ class BookVC: UIViewController {
             let confirmAction = UIAlertAction(title: "Take!", style: .default, handler: { (action) in
                 if (manageAlert.textFields?.first?.text != nil) && (manageAlert.textFields?.first?.text != "") {
                     postTake(id_book: self.postBook._id, Name: manageAlert.textFields!.first!.text!)
-                    self.resultAlert(result: "Book successfully reserved!")
+                    self.navigationController?.popViewController(animated: true)
+//                    print("идет и до сюда, лол")
                 } else {
                     self.resultAlert(result: "Book wasn't reservation, because you have not entered your name.")
                 }
@@ -64,7 +66,8 @@ class BookVC: UIViewController {
         } else {
             let confirmAction = UIAlertAction(title: "Release", style: .default) { (action) in
                 postRemoving(id_book: self.postBook._id, remove: false)
-                self.resultAlert(result: "Book successfully free.")
+                self.navigationController?.popViewController(animated: true)
+//                print("идет и до сюда, лол")
             }
             let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (action) in
             }

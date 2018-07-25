@@ -174,7 +174,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" showsScopeBar="YES" id="XKa-bq-jF9">
+                        <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="prominent" showsScopeBar="YES" id="XKa-bq-jF9" userLabel="searchBar" customClass="MainSearchBar" customModule="Corporative_Library" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -288,7 +288,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="MainTableView" destination="vJW-ls-Q9x" id="ll7-EB-iZS"/>
-                        <outlet property="searchBar" destination="XKa-bq-jF9" id="qIJ-Bg-qGQ"/>
+                        <outlet property="searchBar" destination="XKa-bq-jF9" id="bJ1-ky-opH"/>
                         <segue destination="D2F-DB-lKy" kind="show" identifier="selectBook" id="koo-wP-djs"/>
                     </connections>
                 </tableViewController>

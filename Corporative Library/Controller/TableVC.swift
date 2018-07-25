@@ -16,7 +16,7 @@ class TableVC: UITableViewController, UISearchBarDelegate {
 
     private var partOfBooks = [Book]()
     private var currentSelectedBooks = [Book]() // update the table
-    private var currentPage = 1
+    private var currentPage = 0
     private var shouldShowLoadingCell = false
     var refresh: UIRefreshControl!
     var selectedBarIndex = 0
@@ -35,11 +35,13 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         
         self.refresh.addTarget(self, action: #selector(TableVC.downloadFirstPage), for: UIControlEvents.valueChanged)
         self.refresh.tintColor = UIColor.gray
-        tableView.addSubview(refresh)
+        MainTableView.addSubview(refresh)
+        
         self.refresh.beginRefreshing()
         
+        
         downloadFirstPage()
-  
+        
         searchBar.delegate = self
         searchBar.placeholder = "Search book by name"
         searchBar.tintColor = UIColor.gray
@@ -69,6 +71,10 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         if data.count == 0 {
             print("empty array was made. Last page is \(currentPage - 1)\n")
             endOfPaging = true
+            DispatchQueue.main.async {
+                self.refresh?.endRefreshing()
+                self.MainTableView.tableFooterView?.isHidden = true
+            }
         } else {
             if currentPage == 1 {
                 partOfBooks = data
@@ -76,12 +82,15 @@ class TableVC: UITableViewController, UISearchBarDelegate {
                 partOfBooks += data
             }
             currentSelectedBooks = partOfBooks
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700), execute: {
                 self.MainTableView.reloadData()
                 print("in main queue")
                 self.refresh?.endRefreshing()
-                self.fetchingMore = false
-            }
+                defer {
+                    self.fetchingMore = false
+                    self.MainTableView.tableFooterView?.isHidden = true
+                }
+            })
         }
     }
     
@@ -166,10 +175,10 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return self.currentSelectedBooks.count
+        return currentSelectedBooks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -199,6 +208,7 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
+        MainTableView.showsVerticalScrollIndicator = true
         if currentScope == 0 {
             if !endOfPaging {
                 if offsetY > contentHeight - scrollView.frame.size.height {
@@ -213,6 +223,12 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     func beginBatchFetch() {
         fetchingMore = true
         print("\n\nbeginBatchFetch!")
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        spinner.accessibilityLabel = "Downloading more books..."
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
+        self.MainTableView.tableFooterView = spinner
+        self.MainTableView.tableFooterView?.isHidden = false
         loadBooks()
     }
 

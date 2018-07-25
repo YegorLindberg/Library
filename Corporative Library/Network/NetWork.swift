@@ -9,8 +9,6 @@
 import Foundation
 
 func postRemoving(id_book: String, remove: Bool) {
-
-    print(id_book)
     
     let infoAboutBook = ["id":id_book]
     
@@ -49,8 +47,6 @@ func postRemoving(id_book: String, remove: Bool) {
 
 
 func postTake(id_book: String, Name: String) {
-    
-    print(id_book)
 
     let infoAboutBook = ["id":id_book, "name":Name]
     
