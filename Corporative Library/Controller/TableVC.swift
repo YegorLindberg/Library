@@ -21,7 +21,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     var refresh: UIRefreshControl!
     var selectedBarIndex = 0
     
-    
     var fetchingMore = false
     var endOfPaging = false
 
@@ -36,9 +35,7 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         self.refresh.addTarget(self, action: #selector(TableVC.downloadFirstPage), for: UIControlEvents.valueChanged)
         self.refresh.tintColor = UIColor.gray
         MainTableView.addSubview(refresh)
-        
         self.refresh.beginRefreshing()
-        
         
         downloadFirstPage()
         
@@ -64,7 +61,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         
         networkWorker.delegate = self
         networkWorker.loadAndUpdateDataFromNet(page: currentPage)
-
     }
     
     func updateTableVCWithData(_ data: [Book]) {
@@ -137,7 +133,6 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         searchBar.resignFirstResponder()
         networkWorker.loadSearchingDataFromNet(substring: (self.searchBar.text)!)
     }
-    
     
     var currentScope = 0
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
@@ -230,6 +225,13 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         self.MainTableView.tableFooterView = spinner
         self.MainTableView.tableFooterView?.isHidden = false
         loadBooks()
+    }
+    
+    func resultAlert(title: String, result: String) {
+        let resAlert = UIAlertController(title: title, message: result, preferredStyle: .alert)
+        let confirmResult = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        resAlert.addAction(confirmResult)
+        self.present(resAlert, animated: true, completion: nil)
     }
 
 }

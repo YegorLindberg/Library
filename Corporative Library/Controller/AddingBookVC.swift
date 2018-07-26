@@ -66,8 +66,8 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
-    func resultAlert(result: String) {
-        let resAlert = UIAlertController(title: "Adding book...", message: result, preferredStyle: .alert)
+    func resultAlert(title: String, result: String) {
+        let resAlert = UIAlertController(title: title, message: result, preferredStyle: .alert)
         let confirmResult = UIAlertAction(title: "Ok", style: .default, handler: nil)
         resAlert.addAction(confirmResult)
         self.present(resAlert, animated: true, completion: nil)
@@ -81,7 +81,7 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         let newYear = yearAdd.text!
         hideKeyboard()
         AddingBook(Name: newTitle, Link: newLink, Authors: newAuthors, Description: newDescription, Year: newYear)
-        resultAlert(result: "If you have correctly completed all fields, you will be able to see your book list now!\nP.S. Year of the book must be an integer.")
+        resultAlert(title: "Adding book...", result: "If you have correctly completed all fields, you will be able to see your book list now!\nP.S. Year of the book must be an integer.")
         
     }
 

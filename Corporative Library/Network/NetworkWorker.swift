@@ -27,6 +27,9 @@ class NetworkWorker {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data, error == nil, response != nil else {
+                    if let delegate = self.delegate {
+                        delegate.resultAlert(title: "Downloading error:", result: "Please, check your internet connection.")
+                    }
                     print("Something with URL is wrong.")
                     self.isBuisy = false
                     return
@@ -42,7 +45,7 @@ class NetworkWorker {
                     }
                     self.isBuisy = false
                 } catch let error {
-                    print(error)
+                    print("Error (loading from Net):", error)
                     self.isBuisy = false
                 }
             }.resume()
@@ -70,6 +73,9 @@ class NetworkWorker {
         //download
         URLSession.shared.dataTask(with: url) { (data, response, error) in
                 guard let data = data, error == nil, response != nil else {
+                    if let delegate = self.delegate {
+                        delegate.resultAlert(title: "Downloading error:", result: "Please, check your internet connection.")
+                    }
                     self.isBuisy = false
                     print("Something with URL is wrong.")
                     return
@@ -86,7 +92,7 @@ class NetworkWorker {
                     }
                     self.isBuisy = false
                 } catch let error {
-                    print(error)
+                    print("Error (loading from Net searching):", error)
                     self.isBuisy = false
                 }
             }.resume()
