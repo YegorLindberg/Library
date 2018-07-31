@@ -164,7 +164,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n0k-cs-MOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YKN-Lj-tB7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3337.5" y="-582.04225352112678"/>
+            <point key="canvasLocation" x="3339" y="-435"/>
         </scene>
         <!--Library-->
         <scene sceneID="uhx-Z0-4p6">
@@ -195,10 +195,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Mb-2x-elp">
-                                            <rect key="frame" x="8" y="8" width="128" height="143.5"/>
+                                            <rect key="frame" x="8" y="8" width="134.5" height="143.5"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="QBc-Uw-2SK" userLabel="Main Stack View">
-                                            <rect key="frame" x="144" y="8" width="168" height="143.5"/>
+                                            <rect key="frame" x="150.5" y="8" width="161.5" height="143.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="ebN-IJ-YYd">
                                                     <rect key="frame" x="0.0" y="0.0" width="117.5" height="42.5"/>
@@ -255,7 +255,7 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="0Mb-2x-elp" firstAttribute="width" secondItem="Kzj-XP-cBr" secondAttribute="width" multiplier="0.4" id="2P0-o7-yYg"/>
+                                        <constraint firstItem="0Mb-2x-elp" firstAttribute="width" secondItem="Kzj-XP-cBr" secondAttribute="width" multiplier="0.42" id="2P0-o7-yYg"/>
                                         <constraint firstAttribute="bottom" secondItem="QBc-Uw-2SK" secondAttribute="bottom" constant="8" id="8zQ-w1-Nqu"/>
                                         <constraint firstItem="0Mb-2x-elp" firstAttribute="top" secondItem="Kzj-XP-cBr" secondAttribute="top" constant="8" id="DyF-hN-2pw"/>
                                         <constraint firstAttribute="trailing" secondItem="QBc-Uw-2SK" secondAttribute="trailing" constant="8" id="GzB-3h-1hE"/>
@@ -301,11 +301,11 @@
             <objects>
                 <viewController id="D2F-DB-lKy" customClass="BookVC" customModule="Corporative_Library" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rYv-v5-Lyb" userLabel="Book">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1100"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qri-N1-sGR">
-                                <rect key="frame" x="0.0" y="64" width="320" height="976"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="626"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vx8-eM-KeF">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
@@ -315,13 +315,13 @@
                                         </constraints>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pQe-Iq-UgT">
-                                        <rect key="frame" x="80" y="22" width="160" height="213.5"/>
+                                        <rect key="frame" x="100" y="22" width="120" height="144"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="pQe-Iq-UgT" secondAttribute="height" multiplier="3:4" id="CFT-c6-jrC"/>
+                                            <constraint firstAttribute="width" secondItem="pQe-Iq-UgT" secondAttribute="height" multiplier="2.5:3" id="CFT-c6-jrC"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="i0m-Ag-Voi">
-                                        <rect key="frame" x="15" y="245.5" width="297" height="238"/>
+                                        <rect key="frame" x="15" y="176" width="297" height="238"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="hLk-uw-WU0">
                                                 <rect key="frame" x="0.0" y="0.0" width="215.5" height="33"/>
@@ -424,7 +424,7 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="748" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRb-ve-QAp">
-                                        <rect key="frame" x="12" y="493.5" width="296" height="81.5"/>
+                                        <rect key="frame" x="12" y="424" width="296" height="81.5"/>
                                         <string key="text">book description book description book description book description book description book description book description book description </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -435,11 +435,11 @@
                                 <constraints>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" id="0vw-SP-r7j"/>
                                     <constraint firstItem="vx8-eM-KeF" firstAttribute="width" secondItem="Qri-N1-sGR" secondAttribute="width" id="2Oz-6N-Jls"/>
-                                    <constraint firstAttribute="trailing" secondItem="pQe-Iq-UgT" secondAttribute="trailing" constant="80" id="BgM-XA-sb0"/>
+                                    <constraint firstAttribute="trailing" secondItem="pQe-Iq-UgT" secondAttribute="trailing" constant="100" id="BgM-XA-sb0"/>
                                     <constraint firstItem="hRb-ve-QAp" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="12" id="Cnh-xE-KGm"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="top" secondItem="pQe-Iq-UgT" secondAttribute="bottom" constant="10" id="DIg-EE-7l9"/>
                                     <constraint firstItem="i0m-Ag-Voi" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="15" id="S79-1L-MQs"/>
-                                    <constraint firstItem="pQe-Iq-UgT" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="80" id="U1Y-af-n1R"/>
+                                    <constraint firstItem="pQe-Iq-UgT" firstAttribute="leading" secondItem="Qri-N1-sGR" secondAttribute="leading" constant="100" id="U1Y-af-n1R"/>
                                     <constraint firstAttribute="trailing" secondItem="vx8-eM-KeF" secondAttribute="trailing" id="gUz-zc-ohE"/>
                                     <constraint firstAttribute="bottom" secondItem="hRb-ve-QAp" secondAttribute="bottom" constant="3" id="inB-Ei-1hA"/>
                                     <constraint firstAttribute="trailing" secondItem="i0m-Ag-Voi" secondAttribute="trailing" constant="8" id="sOi-Zc-1uC"/>
@@ -450,7 +450,7 @@
                                 </constraints>
                             </scrollView>
                             <button clearsContextBeforeDrawing="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2HD-Un-WJ0">
-                                <rect key="frame" x="71" y="1053" width="179" height="34"/>
+                                <rect key="frame" x="71" y="703" width="179" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.80414102980000002" blue="0.28235294119999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Ti7-Ie-Qq8"/>
@@ -483,7 +483,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <value key="contentSizeForViewInPopover" type="size" width="320" height="504"/>
-                    <size key="freeformSize" width="320" height="1100"/>
+                    <size key="freeformSize" width="320" height="750"/>
                     <connections>
                         <outlet property="availableStatus" destination="58v-0O-yPZ" id="I7d-lw-qC5"/>
                         <outlet property="bookAuthors" destination="XAt-z5-3QL" id="wLH-ho-Z6b"/>

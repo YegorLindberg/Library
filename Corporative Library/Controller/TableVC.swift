@@ -18,11 +18,12 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     private var currentSelectedBooks = [Book]() // update the table
     private var currentPage = 0
     private var shouldShowLoadingCell = false
-    var refresh: UIRefreshControl!
-    var selectedBarIndex = 0
+    private var refresh: UIRefreshControl!
+    private var selectedBarIndex = 0
     
-    var fetchingMore = false
-    var endOfPaging = false
+    private var fetchingMore = false
+    private var endOfPaging = false
+    private var searchMod = false
 
     @IBOutlet var MainTableView: UITableView!
     
@@ -46,30 +47,35 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     }
     
     @objc func downloadFirstPage() {
-        self.fetchingMore = true
+        searchMod = false
+        fetchingMore = true
         currentPage = 1
         endOfPaging = false
         loadBooks(refresh: true)
     }
     
-    func loadBooks(refresh: Bool = false) {
+    private func loadBooks(refresh: Bool = false) {
         if refresh == false {
             currentPage += 1
         }
         self.selectedBarIndex = self.searchBar.selectedScopeButtonIndex
         print("fetch page: \(self.currentPage)")
         
-        networkWorker.delegate = self
+        networkWorker.delegateTableVC = self
         networkWorker.loadAndUpdateDataFromNet(page: currentPage)
     }
     
     func updateTableVCWithData(_ data: [Book]) {
+        weak var weakSelf = self
         if data.count == 0 {
             print("empty array was made. Last page is \(currentPage - 1)\n")
             endOfPaging = true
             DispatchQueue.main.async {
-                self.refresh?.endRefreshing()
-                self.MainTableView.tableFooterView?.isHidden = true
+                guard let strongSelf = weakSelf else {
+                    return
+                }
+                strongSelf.refresh?.endRefreshing()
+                strongSelf.MainTableView.tableFooterView?.isHidden = true
             }
         } else {
             if currentPage == 1 {
@@ -79,12 +85,15 @@ class TableVC: UITableViewController, UISearchBarDelegate {
             }
             currentSelectedBooks = partOfBooks
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(700), execute: {
-                self.MainTableView.reloadData()
+                guard let strongSelf = weakSelf else {
+                    return
+                }
+                strongSelf.MainTableView.reloadData()
                 print("in main queue")
-                self.refresh?.endRefreshing()
+                strongSelf.refresh?.endRefreshing()
                 defer {
-                    self.fetchingMore = false
-                    self.MainTableView.tableFooterView?.isHidden = true
+                    strongSelf.fetchingMore = false
+                    strongSelf.MainTableView.tableFooterView?.isHidden = true
                 }
             })
         }
@@ -92,14 +101,18 @@ class TableVC: UITableViewController, UISearchBarDelegate {
     
     func updateTableVCWithSearchingData(_ data: [Book]) {
         currentSelectedBooks = data
+        weak var weakSelf = self
         DispatchQueue.main.async {
-            self.MainTableView.reloadData()
-            self.refresh?.endRefreshing()
+            guard let strongSelf = weakSelf else {
+                return
+            }
+            strongSelf.MainTableView.reloadData()
+            strongSelf.refresh?.endRefreshing()
         }
     }
     
     /// search bar
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    internal func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.isSearchResultsButtonSelected == true {
             currentSelectedBooks = partOfBooks
         } else {
@@ -128,14 +141,15 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         MainTableView.reloadData()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    internal func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("search Bar Search Button Clicked")
         searchBar.resignFirstResponder()
+        searchMod = true
         networkWorker.loadSearchingDataFromNet(substring: (self.searchBar.text)!)
     }
     
     var currentScope = 0
-    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    internal func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         switch selectedScope {
         case 0:
             currentScope = 0
@@ -156,12 +170,13 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         MainTableView.reloadData()
     }
     
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+    internal func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.showsCancelButton = true
         return true
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+    internal func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchMod = false
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
     }
@@ -204,16 +219,14 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         MainTableView.showsVerticalScrollIndicator = true
-        if currentScope == 0 {
-            if !endOfPaging {
-                if offsetY > contentHeight - scrollView.frame.size.height {
-                    if fetchingMore == false {
-                        beginBatchFetch()
-                    }
-                }
-
-            }
-        }
+        guard currentScope == 0
+            && !endOfPaging
+            && offsetY > contentHeight - scrollView.frame.size.height
+            && !fetchingMore
+            && !searchMod else {
+            return
+        }        
+        beginBatchFetch()
     }
     func beginBatchFetch() {
         fetchingMore = true
@@ -223,6 +236,7 @@ class TableVC: UITableViewController, UISearchBarDelegate {
         spinner.startAnimating()
         spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width, height: CGFloat(44))
         self.MainTableView.tableFooterView = spinner
+        print("пойман")
         self.MainTableView.tableFooterView?.isHidden = false
         loadBooks()
     }

@@ -40,6 +40,8 @@ class BookCell: UITableViewCell {
         indicator.startAnimating()
     }
     
+    // TODO: Для картикок, которых пока нет
+    // MARK: - с разделителем -
 //    override func prepareForReuse() {
 //        super.prepareForReuse()
 //

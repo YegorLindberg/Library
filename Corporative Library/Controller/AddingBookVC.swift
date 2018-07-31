@@ -9,6 +9,8 @@
 import UIKit
 
 class AddingBookVC: UIViewController, UITextFieldDelegate {
+    
+    var networkWorker = NetworkWorker()
    
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -66,7 +68,7 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
     
-    func resultAlert(title: String, result: String) {
+    func resultAlert(title: String?, result: String) {
         let resAlert = UIAlertController(title: title, message: result, preferredStyle: .alert)
         let confirmResult = UIAlertAction(title: "Ok", style: .default, handler: nil)
         resAlert.addAction(confirmResult)
@@ -80,9 +82,10 @@ class AddingBookVC: UIViewController, UITextFieldDelegate {
         let newDescription = descriptionAdd.text!
         let newYear = yearAdd.text!
         hideKeyboard()
-        AddingBook(Name: newTitle, Link: newLink, Authors: newAuthors, Description: newDescription, Year: newYear)
+        networkWorker.AddingBook(Name: newTitle, Link: newLink, Authors: newAuthors, Description: newDescription, Year: newYear)
         resultAlert(title: "Adding book...", result: "If you have correctly completed all fields, you will be able to see your book list now!\nP.S. Year of the book must be an integer.")
-        
+        self.navigationController?.popViewController(animated: true)
+        //TODO: Refresh TableVC
     }
 
 }
